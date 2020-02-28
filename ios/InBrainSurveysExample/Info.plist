@@ -54,7 +54,7 @@
 	<key>InBrain</key>
 	<dict>
 		<key>prodEnv</key>
-		<true/>
+		<false/>
 		<key>server</key>
 		<false/>
 		<key>client</key>
