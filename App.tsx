@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import inbrain, { InBrainReward } from 'inbrain-surveys';
 import { CLIENT_ID, CLIENT_SECRET, USER_ID } from 'react-native-dotenv';
-import { parseAsync } from '@babel/core';
 
 const BridgeButton = (props: any) => {
   return <TouchableOpacity style={styles.buttonContainer} onPress={props.onPress}>
