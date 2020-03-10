@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import inbrain, { InBrainReward } from 'inbrain-surveys';
-import { CLIENT_ID, CLIENT_SECRET, USER_ID } from 'react-native-dotenv';
+import { CLIENT_ID, CLIENT_SECRET, USER_ID, SESSION_UID } from 'react-native-dotenv';
 
 const BridgeButton = (props: any) => {
   return <TouchableOpacity style={styles.buttonContainer} onPress={props.onPress}>
@@ -24,10 +24,11 @@ export default class App extends Component<{},IAppState> {
   componentDidMount() {
     const clientId = CLIENT_ID;
     const clientSecret = CLIENT_SECRET;
+    const sessionUid = SESSION_UID;
     const userId = USER_ID;
 
     // Init and setAppUserId
-    this.callBridge('init', () => inbrain.init(clientId, clientSecret) )();   
+    this.callBridge('init', () => inbrain.init(clientId, clientSecret, sessionUid) )();   
     this.callBridge('setAppUserId', () => inbrain.setAppUserId(userId) )(); 
     
     // OnClose listener
