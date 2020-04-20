@@ -9,9 +9,9 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import inbrain, { InBrainReward, InitOptions } from 'inbrain-surveys';
-import env from 'react-native-dotenv';
+import {CLIENT_ID,CLIENT_SECRET,USER_ID,SESSION_UID} from 'react-native-dotenv';
 
-const BridgeButton = (props: {name: String, onPress: () => {}}) => {
+const BridgeButton = (props: {name: String, onPress: () => {} }) => {
   return <TouchableOpacity style={styles.buttonContainer} onPress={props.onPress}>
     <Text style={styles.buttonText}>{props.name}</Text>
   </TouchableOpacity>;
@@ -26,7 +26,9 @@ type SdkMethod = () => Promise<any>;
 export default class App extends Component<ComponentProps, ComponentState> {
 
   constructor(props: ComponentState) {
+
     super(props);
+
     this.state = {rewards: [], logs: []};
   }
 
@@ -45,14 +47,13 @@ export default class App extends Component<ComponentProps, ComponentState> {
   appendLog = (log: String) => this.setState({ logs: this.state.logs.concat(log)});
 
   componentDidMount = () => {
-
-    const clientId = env['CLIENT_ID'];
-    const clientSecret = env['CLIENT_SECRET'];
+    const clientId = CLIENT_ID;
+    const clientSecret = CLIENT_SECRET;
 
     // Init 
     const options: InitOptions = {
-      sessionUid: env['SESSION_UID'], 
-      userId: env['USER_ID'], 
+      sessionUid: SESSION_UID, 
+      userId: USER_ID, 
       dataPoints: { gender: 'male', age: '25'},
       title: "NEW TITLE",
       navbarColor: "#ff0000",

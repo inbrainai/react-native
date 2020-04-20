@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>InBrain</key>
+	<dict>
+		<key>prodEnv</key>
+		<false/>
+		<key>server</key>
+		<false/>
+		<key>client</key>
+		<string>CLIENT_SECRET</string>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -51,15 +60,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>InBrain</key>
-	<dict>
-		<key>prodEnv</key>
-		<true/>
-		<key>server</key>
-		<false/>
-		<key>client</key>
-		<string>CLIENT_SECRET</string>
-	</dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
