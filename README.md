@@ -12,7 +12,7 @@ Then modify the .env file with your client identifier, secret and user id.
 
 #### Extra steps iOS
 Run `$ pod install` in the ios/ folder
-Edit your info.plist and set the value of InBrain>client to your client identifier.
+Edit your info.plist and set the value of InBrain > client to your client identifier.
 
 ## Run
 
