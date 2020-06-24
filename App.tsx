@@ -1,121 +1,120 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image } from 'react-native';
 import inbrain, { InBrainReward, InitOptions } from 'inbrain-surveys';
-import {CLIENT_ID,CLIENT_SECRET,USER_ID,SESSION_UID} from 'react-native-dotenv';
-
-const BridgeButton = (props: {name: String, onPress: () => {} }) => {
-  return <TouchableOpacity style={styles.buttonContainer} onPress={props.onPress}>
-    <Text style={styles.buttonText}>{props.name}</Text>
-  </TouchableOpacity>;
-}
-
-type ComponentState = {rewards: InBrainReward[], logs: String[]};
-type ComponentProps = {};
-
-type SdkMethod = () => Promise<any>;
-
 
 export default class App extends Component<ComponentProps, ComponentState> {
 
   constructor(props: ComponentState) {
-
     super(props);
-
     this.state = {rewards: [], logs: []};
   }
 
-  callBridge = <T extends {}>(name: String, sdkMethod: SdkMethod, successCallback?: (r: T) => void) => () => {
-    return sdkMethod().then((result) => {
-      successCallback && successCallback(result);
-      this.appendLog(`[${name} SUCCESS] => ${result}`);
-    }).catch( (err: any) => {
-      this.appendLog(`[${name} ERROR] => ${err.message || err}`);
-    });
-  };
-
-  // Convenient 'setRetults' callbacks for 'callBridge'
-  void = (obj: any) => {};
-  setRewards = (rewards: InBrainReward[]) => this.setState({rewards});
-  appendLog = (log: String) => this.setState({ logs: this.state.logs.concat(log)});
-
   componentDidMount = () => {
-    const clientId = CLIENT_ID;
-    const clientSecret = CLIENT_SECRET;
+    const CLIENT_ID='c0bbffc5-3c2b-44e7-a89e-f720c1a5867f'
+    const CLIENT_SECRET='5iwiMGX3nWBLtNFHDinib7OfHb1mLUVII9x6Q+5bCLT+CMZZ9YbN9MWdywT/rfGFkmvRV+EwD2ltTAFzGGx1lQ=='
+    const USER_ID='react-testing@inbrain.ai'
+    const SESSION_UID='sessionid'
 
     // Init 
     const options: InitOptions = {
       sessionUid: SESSION_UID, 
       userId: USER_ID, 
       dataPoints: { gender: 'male', age: '25'},
-      title: "NEW TITLE",
-      navbarColor: "#ff0000",
+      title: "inBrain Surveys",
+      navbarColor: "#EC7D37",
       production: false
     };
-    this.callBridge('init', () => inbrain.init(clientId, clientSecret, options) )();   
+
+    inbrain.init(CLIENT_ID, CLIENT_SECRET, options).then(() => {
+      this.appendLog(`[Init SUCCESS]`);
+    }).catch( (err: any) => {
+      this.appendLog(`[Init ERROR] => ${err.message || err}`);
+    });
 
     // OnClose listener
     inbrain.setOnCloseListener(() => this.appendLog(`[onClose SUCCESS] => `));
     inbrain.setOnCloseListenerFromPage(() => this.appendLog(`[onCloseFromPage SUCCESS] => `));
   }
 
+  onClickGetRewards= () =>  {
+    inbrain.getRewards().then((result) => {
+     this.appendLog(`[Get rewards SUCCESS] => ${result}`);
+     this.setRewards(result)
+   }).catch( (err: any) => {
+     this.appendLog(`[Get rewards ERROR] => ${err.message || err}`);
+   });
+  }
+
+  onClickConfirmRewards = () => {
+    inbrain.confirmRewards(this.state.rewards).then(() => {
+      this.appendLog(`[Confirm rewards SUCCESS]`);
+    }).catch( (err: any) => {
+      this.appendLog(`[Confirm rewards ERROR] => ${err.message || err}`);
+    });
+   }
+
+   onClickShowSurveys = () => {
+      inbrain.showSurveys().then(() => {
+        this.appendLog(`[Show Surveys SUCCESS]`);
+      }).catch( (err: any) => {
+        this.appendLog(`[Show Surveys ERROR] => ${err.message || err}`);
+      });
+    }
+
+      // Convenient 'setRetults' callbacks for 'callBridge'
+  setRewards = (rewards: InBrainReward[]) => this.setState({rewards});
+  appendLog = (log: String) => this.setState({ logs: this.state.logs.concat(log)});
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
 
-      <View>
-        <Text style={styles.title}>SDK Methods</Text>
-        <View style={styles.buttonsContainer}>
-          <View style={{flexGrow:1, margin: 2}}>
-            <BridgeButton name="getRewards" onPress={this.callBridge("getRewards", () => inbrain.getRewards(), this.setRewards)} />
-            <BridgeButton name="confirmRewards" onPress={this.callBridge("confirmRewards", () => inbrain.confirmRewards(this.state.rewards) )} />
-            <BridgeButton name="showSurveys" onPress={this.callBridge("showSurveys", () => inbrain.showSurveys() )} />
-          </View>
+      <View style={styles.headerContainer}>
+        <Text style={styles.title}>inBrain Surveys</Text>
+        <Text style={styles.appTitle}>Example App</Text>
+
+        <View style={styles.imageContainer}>
+          <Image style={styles.imageFloatingLady} source={require('./assets/FloatingWoman.png')} />
         </View>
       </View>
-      <View>
-        <Text style={styles.title}>Rewards</Text>
 
-        {this.state.rewards.map((r,i) => (
-          <Text style={styles.message} key={r.transactionId}>
-            [ Reward {i} ] id={r.transactionId} / amount={r.amount} / currency={r.currency} / transactionType={r.transactionType}
-          </Text>
-        ))}
+      <TouchableOpacity style={styles.buttonContainer} onPress={this.onClickShowSurveys}>
+        <Text style={styles.button}>Open Survey Wall</Text>
+      </TouchableOpacity>
+
+      <View style={{flex:1}} />
+      <View style={{alignItems: 'center'}}>
+        <Image style={styles.imageLogo} source={require('./assets/Logo.png')} />
       </View>
-
-      <Text style={styles.title}>Logs</Text>
-      <ScrollView style={{ flexGrow: 1 }}>
-        {this.state.logs.map((m, i) => (
-          <Text style={styles.message} key={i}>
-            {m}
-          </Text>
-        ))}
-      </ScrollView>
 
     </SafeAreaView>
     );
   }
 }
 
+
+type ComponentState = {rewards: InBrainReward[], logs: String[]};
+type ComponentProps = {};
+
 const styles = StyleSheet.create({
   container: {
     height: '100%',
     margin: 30,
-    flex: 1,
-    backgroundColor: '#F5FCFF'
+    flex: 1
+  },
+  headerContainer: {
+    marginTop: 60,
   },
   title: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
-    marginTop: 10,
     fontWeight: 'bold'
+  },
+  appTitle: {
+    fontSize: 20,
+    marginTop: 5,
+    textAlign: 'center',
+    color: 'grey'
   },
   message: {
     fontSize: 10,
@@ -126,13 +125,30 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   buttonContainer: {
-    backgroundColor: '#2196F3',
-    margin: 1,
+    marginTop: 100,
+    height: 80,
+    backgroundColor: '#EC7D37',
+    borderRadius: 10,
+    justifyContent: 'center'
   },
-  buttonText: {
+  button: {
     textAlign: 'center',
-    color: 'white'
+    color: 'white',
+    fontSize: 25,
   },
+  imageContainer: {
+    marginTop: 115,
+    alignItems: 'center'
+  },
+  imageFloatingLady: {
+    height: 160,
+    resizeMode: 'contain'
+  },
+  imageLogo: {
+    width: 250,
+    height: 90,
+    resizeMode: 'contain'
+  }
 });
 
 

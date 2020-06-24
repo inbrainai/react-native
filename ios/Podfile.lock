@@ -67,7 +67,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - inbrain-surveys (1.0.2):
+  - inbrain-surveys (1.0.5):
     - React
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
@@ -433,7 +433,7 @@ SPEC CHECKSUMS:
   FlipperKit: 6dc9b8f4ef60d9e5ded7f0264db299c91f18832e
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  inbrain-surveys: 11e6b69309fcb67eb0f83aeb600b3963b492fddf
+  inbrain-surveys: a197e7149cfd4fb0df52c7c04794a62533a628e0
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   RCTRequired: cec6a34b3ac8a9915c37e7e4ad3aa74726ce4035
   RCTTypeSafety: 93006131180074cffa227a1075802c89a49dd4ce
@@ -459,4 +459,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 44b59f23e587ffdb40c30e2bc1d8b6a253de0775
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.2
