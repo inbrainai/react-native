@@ -36,7 +36,7 @@ The application comes with a set of hardcoded test credentials. You can change t
 
 Please note that if you are testing on iOS, you will need to modify the Info.plist. Look for the `InBrain` dictionnary and the `client` key under it.
 
-![Framework Target Membership](https://ibb.co/TP21Q4y)
+![Framework Target Membership](https://i.ibb.co/MPSfzcd/infoplist.png)
 
 
 
