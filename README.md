@@ -7,18 +7,21 @@ All the logic is done in App.jsx with the differents SDK method calls.
 XCode 11.2 (or higher)
 node 12.4.1 (or higher)
 npm 6.13.1 (or higher)
+Cocoapods 1.9.2 (or higher)
 
 ## Installation
 Simply run: 
 `$ npm install`
 
 ## Run
-To run the emulator.
+To run the app:
 
 ### iOS
-```
-npm run ios
-```
+Go to the ios/ folder and run `pod install`. Then, open the `ios/` folder in XCode.
+
+Set the framework 'Target Membership' to `inbrain-surveys` as below:
+
+![Framework Target Membership](https://i.ibb.co/N2ntq0P/target-membership.png)
 
 ### Android
 Simply run:
