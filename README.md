@@ -1,3 +1,5 @@
+![APP](https://i.ibb.co/BB3RdHK/Screenshot-2020-06-24-at-23-59-49.png)
+
 # InBrain Surveys Example
 This repository contains an example React Native application using [inbrain-surveys](https://www.npmjs.com/package/inbrain-surveys) sdk.
 
@@ -36,5 +38,5 @@ The application comes with a set of hardcoded test credentials. You can change t
 
 Please note that if you are testing on iOS, you will need to modify the Info.plist. Look for the `InBrain` dictionnary and the `client` key under it.
 
-![Framework Target Membership](https://i.ibb.co/D1LTNBj/infoplist.png)
+![Info Plist](https://i.ibb.co/D1LTNBj/infoplist.png)
 
