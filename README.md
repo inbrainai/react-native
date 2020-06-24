@@ -1,6 +1,5 @@
-![APP](https://i.ibb.co/BB3RdHK/Screenshot-2020-06-24-at-23-59-49.png)
 
-# InBrain Surveys Example
+# inBrain Surveys Example
 This repository contains an example React Native application using [inbrain-surveys](https://www.npmjs.com/package/inbrain-surveys) sdk.
 
 All the logic is done in App.jsx with the differents SDK method calls. 
