@@ -22,7 +22,7 @@ export default class App extends Component<ComponentProps, ComponentState> {
       dataPoints: { gender: 'male', age: '25'},
       title: "inBrain Surveys",
       navbarColor: "#EC7D37",
-      production: false
+      production: true
     };
 
     inbrain.init(CLIENT_ID, CLIENT_SECRET, options).then(() => {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   headerContainer: {
-    marginTop: 60,
+    marginTop: 40,
   },
   title: {
     fontSize: 30,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   buttonContainer: {
-    marginTop: 100,
+    marginTop: 80,
     height: 80,
     backgroundColor: '#EC7D37',
     borderRadius: 10,
@@ -137,11 +137,11 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   imageContainer: {
-    marginTop: 115,
+    marginTop: 100,
     alignItems: 'center'
   },
   imageFloatingLady: {
-    height: 160,
+    height: 120,
     resizeMode: 'contain'
   },
   imageLogo: {
