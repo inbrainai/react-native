@@ -29,6 +29,7 @@ export default class App extends Component<ComponentProps, ComponentState> {
       this.appendLog(`[Init SUCCESS]`);
     }).catch( (err: any) => {
       this.appendLog(`[Init ERROR] => ${err.message || err}`);
+      console.log(err);
     });
 
     // OnClose listener
@@ -42,6 +43,7 @@ export default class App extends Component<ComponentProps, ComponentState> {
      this.setRewards(result)
    }).catch( (err: any) => {
      this.appendLog(`[Get rewards ERROR] => ${err.message || err}`);
+     console.log(err);
    });
   }
 
@@ -50,6 +52,7 @@ export default class App extends Component<ComponentProps, ComponentState> {
       this.appendLog(`[Confirm rewards SUCCESS]`);
     }).catch( (err: any) => {
       this.appendLog(`[Confirm rewards ERROR] => ${err.message || err}`);
+      console.log(err);
     });
    }
 
@@ -58,12 +61,13 @@ export default class App extends Component<ComponentProps, ComponentState> {
         this.appendLog(`[Show Surveys SUCCESS]`);
       }).catch( (err: any) => {
         this.appendLog(`[Show Surveys ERROR] => ${err.message || err}`);
+         console.log(err);
       });
     }
 
       // Convenient 'setRetults' callbacks for 'callBridge'
   setRewards = (rewards: InBrainReward[]) => this.setState({rewards});
-  appendLog = (log: String) => this.setState({ logs: this.state.logs.concat(log)});
+  appendLog = (log: String) => console.log(log);
 
   render() {
     return (
