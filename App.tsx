@@ -12,17 +12,15 @@ export default class App extends Component<ComponentProps, ComponentState> {
   componentDidMount = () => {
     const CLIENT_ID='c0bbffc5-3c2b-44e7-a89e-f720c1a5867f'
     const CLIENT_SECRET='5iwiMGX3nWBLtNFHDinib7OfHb1mLUVII9x6Q+5bCLT+CMZZ9YbN9MWdywT/rfGFkmvRV+EwD2ltTAFzGGx1lQ=='
-    const USER_ID='react-testing@inbrain.ai'
-    const SESSION_UID='sessionid'
 
     // Init 
     const options: InitOptions = {
-      sessionUid: SESSION_UID, 
-      userId: USER_ID, 
+      sessionUid: 'sessionid', 
+      userId: 'react-testing@inbrain.ai', 
       dataPoints: { gender: 'male', age: '25'},
-      title: "inBrain Surveys",
+      title: "inBrain Surveys Wall",
       navbarColor: "#EC7D37",
-      production: true
+      isS2S: false
     };
 
     inbrain.init(CLIENT_ID, CLIENT_SECRET, options).then(() => {
