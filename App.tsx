@@ -6,7 +6,7 @@ export default class App extends Component<ComponentProps, ComponentState> {
 
   constructor(props: ComponentState) {
     super(props);
-    this.state = {rewards: [], logs: []};
+    this.state = {rewards: [], logs: [], points: 0};
   }
 
   componentDidMount = () => {
@@ -31,8 +31,19 @@ export default class App extends Component<ComponentProps, ComponentState> {
     });
 
     // OnClose listener
-    inbrain.setOnCloseListener(() => this.appendLog(`[onClose SUCCESS] => `));
+    inbrain.setOnCloseListener(this.sumRewards)
+
     inbrain.setOnCloseListenerFromPage(() => this.appendLog(`[onCloseFromPage SUCCESS] => `));
+  }
+
+  sumRewards = () => {
+    inbrain.getRewards().then((result) => {
+      const points = result.reduce((sum, reward) => sum + reward.amount, 0);
+      this.setState({points})
+    }).catch( (err: any) => {
+      this.appendLog(`[Get rewards ERROR] => ${err.message || err}`);
+      console.log(err);
+    });
   }
 
   onClickGetRewards= () =>  {
@@ -83,6 +94,9 @@ export default class App extends Component<ComponentProps, ComponentState> {
       <TouchableOpacity style={styles.buttonContainer} onPress={this.onClickShowSurveys}>
         <Text style={styles.button}>Open Survey Wall</Text>
       </TouchableOpacity>
+      <View>
+         <Text style={styles.points}>Total Points: {this.state.points}</Text>
+      </View>
 
       <View style={{flex:1}} />
       <View style={{alignItems: 'center'}}>
@@ -95,7 +109,7 @@ export default class App extends Component<ComponentProps, ComponentState> {
 }
 
 
-type ComponentState = {rewards: InBrainReward[], logs: String[]};
+type ComponentState = {rewards: InBrainReward[], logs: String[], points: Number};
 type ComponentProps = {};
 
 const styles = StyleSheet.create({
@@ -117,6 +131,13 @@ const styles = StyleSheet.create({
     marginTop: 5,
     textAlign: 'center',
     color: 'grey'
+  },
+  points: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginTop: 25,
+    color: '#0370BE',
+    textAlign: 'center',
   },
   message: {
     fontSize: 10,
