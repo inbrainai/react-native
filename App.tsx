@@ -19,6 +19,7 @@ export default class App extends Component<ComponentProps, ComponentState> {
       userId: 'react-testing@inbrain.ai', 
       dataPoints: { gender: 'male', age: '25'},
       title: "inBrain Surveys",
+      language: 'fr-fr',
       navbarColor: "#EC7D37",
       isS2S: false
     };
