@@ -38,7 +38,10 @@ export default class App extends Component<ComponentProps, ComponentState> {
   }
 
   sumRewards = () => {
+    this.appendLog(`[onCloseFromPage SUCCESS] => `)
     inbrain.getRewards().then((result) => {
+      this.appendLog(`[Get rewards SUCCESS] => Adding points`);
+
       const points = result.reduce((sum, reward) => sum + reward.amount, 0);
       this.setState({points})
     }).catch( (err: any) => {
