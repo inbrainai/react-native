@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import inbrain, { InBrainReward, InitOptions } from 'inbrain-surveys';
 
 export default class App extends Component<ComponentProps, ComponentState> {
@@ -33,8 +33,16 @@ export default class App extends Component<ComponentProps, ComponentState> {
 
     // OnClose listener
     inbrain.setOnCloseListener(this.sumRewards)
-
     inbrain.setOnCloseListenerFromPage(() => this.appendLog(`[onCloseFromPage SUCCESS] => `));
+  }
+
+  onClickShowSurveys = () => {
+    inbrain.showSurveys().then(() => {
+      this.appendLog(`[Show Surveys SUCCESS]`);
+    }).catch( (err: any) => {
+      this.appendLog(`[Show Surveys ERROR] => ${err.message || err}`);
+        console.log(err);
+    });
   }
 
   sumRewards = () => {
@@ -49,36 +57,8 @@ export default class App extends Component<ComponentProps, ComponentState> {
       console.log(err);
     });
   }
-
-  onClickGetRewards= () =>  {
-    inbrain.getRewards().then((result) => {
-     this.appendLog(`[Get rewards SUCCESS] => ${result}`);
-     this.setRewards(result)
-   }).catch( (err: any) => {
-     this.appendLog(`[Get rewards ERROR] => ${err.message || err}`);
-     console.log(err);
-   });
-  }
-
-  onClickConfirmRewards = () => {
-    inbrain.confirmRewards(this.state.rewards).then(() => {
-      this.appendLog(`[Confirm rewards SUCCESS]`);
-    }).catch( (err: any) => {
-      this.appendLog(`[Confirm rewards ERROR] => ${err.message || err}`);
-      console.log(err);
-    });
-   }
-
-   onClickShowSurveys = () => {
-      inbrain.showSurveys().then(() => {
-        this.appendLog(`[Show Surveys SUCCESS]`);
-      }).catch( (err: any) => {
-        this.appendLog(`[Show Surveys ERROR] => ${err.message || err}`);
-         console.log(err);
-      });
-    }
-
-      // Convenient 'setRetults' callbacks for 'callBridge'
+   
+  // Convenient 'setRetults' callbacks for 'callBridge'
   setRewards = (rewards: InBrainReward[]) => this.setState({rewards});
   appendLog = (log: String) => console.log(log);
 
