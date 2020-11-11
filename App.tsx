@@ -29,7 +29,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       title: "inBrain Surveys",
       navbarColor: "#EC7D37",
       isS2S: false,
-      language: 'fr-fr'
+      language: 'en-us'
     };
 
     // Initialise the SDK
