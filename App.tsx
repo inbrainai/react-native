@@ -1,29 +1,38 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image } from 'react-native';
-import inbrain, { InBrainReward, InitOptions } from 'inbrain-surveys';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image, ImageBackground, ScrollView} from 'react-native';
+import inbrain, { InBrainNativeSurveys, InBrainReward, InitOptions } from 'inbrain-surveys';
+import { BackHandler } from 'react-native';
+import ActionList from './components/ActionList';
+import NativeSurveysList from './components/NativeSurveysList';
 
-export default class App extends Component<ComponentProps, ComponentState> {
+export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 
-  constructor(props: ComponentState) {
+  constructor(props: InbBrainAppProps) {
     super(props);
-    this.state = {rewards: [], logs: [], points: 0};
+    this.state = {
+      rewards: [], 
+      points: 0, 
+      nativeSurveys: []
+    };
   }
 
   componentDidMount = () => {
+    // To test with your account, replace the credentials below
     const CLIENT_ID='c0bbffc5-3c2b-44e7-a89e-f720c1a5867f'
     const CLIENT_SECRET='5iwiMGX3nWBLtNFHDinib7OfHb1mLUVII9x6Q+5bCLT+CMZZ9YbN9MWdywT/rfGFkmvRV+EwD2ltTAFzGGx1lQ=='
 
-    // Init 
+    // Init  options
     const options: InitOptions = {
-      sessionUid: 'sessionid', 
-      userId: 'react-testing@inbrain.ai', 
+      sessionUid: 'sessionId', 
+      userId: 'userId', 
       dataPoints: { gender: 'male', age: '25'},
       title: "inBrain Surveys",
-      language: 'fr-fr',
       navbarColor: "#EC7D37",
-      isS2S: false
+      isS2S: false,
+      language: 'fr-fr'
     };
 
+    // Initialise the SDK
     inbrain.init(CLIENT_ID, CLIENT_SECRET, options).then(() => {
       this.appendLog(`[Init SUCCESS]`);
     }).catch( (err: any) => {
@@ -31,23 +40,37 @@ export default class App extends Component<ComponentProps, ComponentState> {
       console.log(err);
     });
 
-    // OnClose listener
-    inbrain.setOnCloseListener(this.sumRewards)
+    // OnClose listeners
+    inbrain.setOnCloseListener(() => {
+      this.sumRewards();
+      this.appendLog(`[onClose SUCCESS] => `);
+    });
     inbrain.setOnCloseListenerFromPage(() => this.appendLog(`[onCloseFromPage SUCCESS] => `));
+
+
+
+    // On back button, clean the state to go back to Action list page
+    BackHandler.addEventListener('hardwareBackPress', this.cleanState);
+
   }
 
+  /**
+   * How to call inbrain.showSurveys()
+   */
   onClickShowSurveys = () => {
     inbrain.showSurveys().then(() => {
       this.appendLog(`[Show Surveys SUCCESS]`);
     }).catch( (err: any) => {
       this.appendLog(`[Show Surveys ERROR] => ${err.message || err}`);
-        console.log(err);
+      console.log(err);
     });
   }
 
+  /**
+   * How to call inbrain.getRewards()
+   */
   sumRewards = () => {
-    this.appendLog(`[onCloseFromPage SUCCESS] => `)
-    inbrain.getRewards().then((result) => {
+    inbrain.getRewards().then((result: InBrainReward[]) => {
       this.appendLog(`[Get rewards SUCCESS] => Adding points`);
 
       const points = result.reduce((sum, reward) => sum + reward.amount, 0);
@@ -57,9 +80,45 @@ export default class App extends Component<ComponentProps, ComponentState> {
       console.log(err);
     });
   }
-   
-  // Convenient 'setRetults' callbacks for 'callBridge'
-  setRewards = (rewards: InBrainReward[]) => this.setState({rewards});
+
+  /**
+   * How to call inbrain.getNativeSurveys()
+   */
+  onClickShowNativeSurveys = () => {
+    inbrain.getNativeSurveys().then((nativeSurveys: InBrainNativeSurveys[]) => {
+      this.appendLog(`[Get Native Surveys SUCCESS: ${nativeSurveys.length} surveys]`);
+      this.setState({nativeSurveys});
+    }).catch( (err: any) => {
+      this.appendLog(`[Get Native Surveys ERROR] => ${err.message || err}`);
+      console.log(err);
+    });
+  }
+
+  /**
+   * How to call inbrain.showNativeSurvey(id: string)
+   */
+  onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurveys) => {
+    inbrain.showNativeSurvey(nativeSurvey.id).then(() => {
+      this.appendLog(`[Show Native Surveys SUCCESS`);
+    }).catch( (err: any) => {
+      this.appendLog(`[Show Native Survey ERROR] => ${err.message || err}`);
+      console.log(err);
+    });
+  }
+
+  /**
+   * How to call inbrain.checkSurveysAvailable()
+   */
+  checkSurveysAvailable = () => {
+    inbrain.checkSurveysAvailable().then((available: boolean) => {
+      this.appendLog(`[Check Surveys Available:${available}`);
+    }).catch( (err: any) => {
+      this.appendLog(`[Check Surveys Available ERROR] => ${err.message || err}`);
+      console.log(err);
+    });
+  }
+ 
+  // Convenient methods for logging
   appendLog = (log: String) => console.log(log);
 
   render() {
@@ -68,21 +127,21 @@ export default class App extends Component<ComponentProps, ComponentState> {
 
       <View style={styles.headerContainer}>
         <Text style={styles.title}>inBrain Surveys</Text>
-        <Text style={styles.appTitle}>Example App</Text>
-
-        <View style={styles.imageContainer}>
-          <Image style={styles.imageFloatingLady} source={require('./assets/FloatingWoman.png')} />
-        </View>
+        <Text style={styles.appSubtitle}>{this.state.nativeSurveys.length == 0 ? 'Example App': 'Native Surveys'}</Text>
       </View>
 
-      <TouchableOpacity style={styles.buttonContainer} onPress={this.onClickShowSurveys}>
-        <Text style={styles.button}>Open Survey Wall</Text>
-      </TouchableOpacity>
+      {this.state.nativeSurveys.length == 0 && <ActionList 
+          onClickShowNativeSurveys={this.onClickShowNativeSurveys}
+          onClickShowSurveys={this.onClickShowSurveys}/>}
+
+      {this.state.nativeSurveys.length > 0 && <NativeSurveysList 
+          nativeSurveys={this.state.nativeSurveys}
+          onClickShowNativeSurvey={this.onClickShowNativeSurvey}/>}
+
       <View>
          <Text style={styles.points}>Total Points: {this.state.points}</Text>
       </View>
 
-      <View style={{flex:1}} />
       <View style={{alignItems: 'center'}}>
         <Image style={styles.imageLogo} source={require('./assets/Logo.png')} />
       </View>
@@ -90,70 +149,65 @@ export default class App extends Component<ComponentProps, ComponentState> {
     </SafeAreaView>
     );
   }
+
+  /**
+   * Clean App state
+   */
+  cleanState = () => { 
+    this.setState({nativeSurveys: []}); 
+    return true;
+  }
+
 }
 
+/**
+ * Application state
+ */
+type InbBrainAppState = {
+  points: Number, 
+  rewards: InBrainReward[], 
+  nativeSurveys: InBrainNativeSurveys[]
+};
 
-type ComponentState = {rewards: InBrainReward[], logs: String[], points: Number};
-type ComponentProps = {};
+/**
+ * Application props
+ */
+type InbBrainAppProps = {};
 
+/**
+ * Styles in JS
+ */
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    margin: 30,
+    margin: 10,
     flex: 1
   },
   headerContainer: {
-    marginTop: 40,
+    marginTop: 20,
   },
   title: {
     fontSize: 30,
     textAlign: 'center',
     fontWeight: 'bold'
   },
-  appTitle: {
+  appSubtitle: {
     fontSize: 20,
-    marginTop: 5,
+    marginTop: 0,
     textAlign: 'center',
     color: 'grey'
   },
   points: {
-    fontSize: 25,
+    fontSize: 23,
     fontWeight: 'bold',
     marginTop: 25,
     color: '#0370BE',
     textAlign: 'center',
   },
-  message: {
-    fontSize: 10,
-    textAlign: 'left'
-  },
-  buttonsContainer: {
-    alignContent: 'center',
-    flexDirection: 'row'
-  },
-  buttonContainer: {
-    marginTop: 80,
-    height: 80,
-    backgroundColor: '#EC7D37',
-    borderRadius: 10,
-    justifyContent: 'center'
-  },
-  button: {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 25,
-  },
-  imageContainer: {
-    marginTop: 100,
-    alignItems: 'center'
-  },
-  imageFloatingLady: {
-    height: 120,
-    resizeMode: 'contain'
-  },
   imageLogo: {
-    width: 250,
-    height: 90,
+    width: 220,
+    height: 35,
+    marginTop: 30,
     resizeMode: 'contain'
   }
 });
