@@ -24,7 +24,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     // Init  options
     const options: InitOptions = {
       sessionUid: 'sessionId', 
-      userId: 'userId', 
+      userId: 'react-testing@inbrain.ai', 
       dataPoints: { gender: 'male', age: '25'},
       title: "inBrain Surveys",
       navbarColor: "#EC7D37",
