@@ -28,6 +28,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       dataPoints: { gender: 'male', age: '25'},
       title: "inBrain Surveys",
       navbarColor: "#EC7D37",
+      titleColor: "#FFFFFF",
       isS2S: false,
       language: 'en-us'
     };
