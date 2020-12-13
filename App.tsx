@@ -26,9 +26,16 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       sessionUid: 'sessionId', 
       userId: 'react-testing@inbrain.ai', 
       dataPoints: { gender: 'male', age: '25'},
-      title: "inBrain Surveys",
-      navbarColor: "#EC7D37",
-      titleColor: "#FFFFFF",
+      title: 'inBrain Surveys',
+      statusBar: {
+        lightStatusBar: true
+      },
+      navigationBar: {
+        backgroundColor: "#EAAAAA",
+        titleColor: "#222AAA",
+        buttonsColor: "#ABCDEF",
+        hasShadow: false,
+      },
       isS2S: false,
       language: 'en-us'
     };
