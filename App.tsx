@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image, ImageBackground, ScrollView} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, Image, ImageBackground, ScrollView } from 'react-native';
 import inbrain, { InBrainNativeSurveys, InBrainReward, InitOptions } from 'inbrain-surveys';
 import { BackHandler } from 'react-native';
 import ActionList from './components/ActionList';
@@ -10,22 +10,22 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   constructor(props: InbBrainAppProps) {
     super(props);
     this.state = {
-      rewards: [], 
-      points: 0, 
+      rewards: [],
+      points: 0,
       nativeSurveys: []
     };
   }
 
   componentDidMount = () => {
     // To test with your account, replace the credentials below
-    const CLIENT_ID='c0bbffc5-3c2b-44e7-a89e-f720c1a5867f'
-    const CLIENT_SECRET='5iwiMGX3nWBLtNFHDinib7OfHb1mLUVII9x6Q+5bCLT+CMZZ9YbN9MWdywT/rfGFkmvRV+EwD2ltTAFzGGx1lQ=='
+    const CLIENT_ID = 'c0bbffc5-3c2b-44e7-a89e-f720c1a5867f'
+    const CLIENT_SECRET = '5iwiMGX3nWBLtNFHDinib7OfHb1mLUVII9x6Q+5bCLT+CMZZ9YbN9MWdywT/rfGFkmvRV+EwD2ltTAFzGGx1lQ=='
 
     // Init  options
     const options: InitOptions = {
-      sessionUid: 'sessionId', 
-      userId: 'react-testing@inbrain.ai', 
-      dataPoints: { gender: 'male', age: '25'},
+      sessionUid: 'sessionId',
+      userId: 'react-testing@inbrain.ai',
+      dataPoints: { gender: 'male', age: '25' },
       title: 'inBrain Surveys',
       statusBar: {
         lightStatusBar: true
@@ -43,7 +43,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     // Initialise the SDK
     inbrain.init(CLIENT_ID, CLIENT_SECRET, options).then(() => {
       this.appendLog(`[Init SUCCESS]`);
-    }).catch( (err: any) => {
+    }).catch((err: any) => {
       this.appendLog(`[Init ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -68,7 +68,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   onClickShowSurveys = () => {
     inbrain.showSurveys().then(() => {
       this.appendLog(`[Show Surveys SUCCESS]`);
-    }).catch( (err: any) => {
+    }).catch((err: any) => {
       this.appendLog(`[Show Surveys ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -82,8 +82,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       this.appendLog(`[Get rewards SUCCESS] => Adding points`);
 
       const points = result.reduce((sum, reward) => sum + reward.amount, 0);
-      this.setState({points})
-    }).catch( (err: any) => {
+      this.setState({ points })
+    }).catch((err: any) => {
       this.appendLog(`[Get rewards ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -95,8 +95,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   onClickShowNativeSurveys = () => {
     inbrain.getNativeSurveys().then((nativeSurveys: InBrainNativeSurveys[]) => {
       this.appendLog(`[Get Native Surveys SUCCESS: ${nativeSurveys.length} surveys]`);
-      this.setState({nativeSurveys});
-    }).catch( (err: any) => {
+      this.setState({ nativeSurveys });
+    }).catch((err: any) => {
       this.appendLog(`[Get Native Surveys ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -108,7 +108,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurveys) => {
     inbrain.showNativeSurvey(nativeSurvey.id).then(() => {
       this.appendLog(`[Show Native Surveys SUCCESS`);
-    }).catch( (err: any) => {
+    }).catch((err: any) => {
       this.appendLog(`[Show Native Survey ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -120,12 +120,12 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   checkSurveysAvailable = () => {
     inbrain.checkSurveysAvailable().then((available: boolean) => {
       this.appendLog(`[Check Surveys Available:${available}`);
-    }).catch( (err: any) => {
+    }).catch((err: any) => {
       this.appendLog(`[Check Surveys Available ERROR] => ${err.message || err}`);
       console.log(err);
     });
   }
- 
+
   // Convenient methods for logging
   appendLog = (log: String) => console.log(log);
 
@@ -133,36 +133,36 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     return (
       <SafeAreaView style={styles.container}>
 
-      <View style={styles.headerContainer}>
-        <Text style={styles.title}>inBrain Surveys</Text>
-        <Text style={styles.appSubtitle}>{this.state.nativeSurveys.length == 0 ? 'Example App': 'Native Surveys'}</Text>
-      </View>
+        <View style={styles.headerContainer}>
+          <Text style={styles.title}>inBrain Surveys</Text>
+          <Text style={styles.appSubtitle}>{this.state.nativeSurveys.length == 0 ? 'Example App' : 'Native Surveys'}</Text>
+        </View>
 
-      {this.state.nativeSurveys.length == 0 && <ActionList 
+        {this.state.nativeSurveys.length == 0 && <ActionList
           onClickShowNativeSurveys={this.onClickShowNativeSurveys}
-          onClickShowSurveys={this.onClickShowSurveys}/>}
+          onClickShowSurveys={this.onClickShowSurveys} />}
 
-      {this.state.nativeSurveys.length > 0 && <NativeSurveysList 
+        {this.state.nativeSurveys.length > 0 && <NativeSurveysList
           nativeSurveys={this.state.nativeSurveys}
-          onClickShowNativeSurvey={this.onClickShowNativeSurvey}/>}
+          onClickShowNativeSurvey={this.onClickShowNativeSurvey} />}
 
-      <View>
-         <Text style={styles.points}>Total Points: {this.state.points}</Text>
-      </View>
+        <View>
+          <Text style={styles.points}>Total Points: {this.state.points}</Text>
+        </View>
 
-      <View style={{alignItems: 'center'}}>
-        <Image style={styles.imageLogo} source={require('./assets/Logo.png')} />
-      </View>
+        <View style={{ alignItems: 'center' }}>
+          <Image style={styles.imageLogo} source={require('./assets/Logo.png')} />
+        </View>
 
-    </SafeAreaView>
+      </SafeAreaView>
     );
   }
 
   /**
    * Clean App state
    */
-  cleanState = () => { 
-    this.setState({nativeSurveys: []}); 
+  cleanState = () => {
+    this.setState({ nativeSurveys: [] });
     return true;
   }
 
@@ -172,8 +172,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
  * Application state
  */
 type InbBrainAppState = {
-  points: Number, 
-  rewards: InBrainReward[], 
+  points: Number,
+  rewards: InBrainReward[],
   nativeSurveys: InBrainNativeSurveys[]
 };
 
