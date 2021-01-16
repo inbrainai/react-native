@@ -35,4 +35,10 @@ npm run android
 ## Change the credentials
 The application comes with a set of hardcoded test credentials. You can change the test credentials by modifying the variables `CLIENT_ID` and `CLIENT_SECRET` in `App.tsx`.
 
+## Generate builds:
+
+### Android
+Follow the installation instructions. Go to the `android/` folder and run `./gradlew clean && gradlew assembleRelease`
+The apk will be generated at `android/app/build/outputs/apk/release/app-release.apk` and is signed using a self-signed certificate.
+
 
