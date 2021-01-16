@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* InBrainSurveysExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* InBrainSurveysExampleTests.m */; };
-		03DFFA9FA7D5C152F81BF761 /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E551021534C7F779E5BB4A5 /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -16,10 +15,11 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* InBrainSurveysExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* InBrainSurveysExampleTests.m */; };
+		316CDFECBCD89EFCD536A216 /* libPods-InBrainSurveysExample-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 443AC8C50F77C0FA6A249D37 /* libPods-InBrainSurveysExample-tvOSTests.a */; };
+		3DB5DB1A62BF9A1CAF4C46CE /* libPods-InBrainSurveysExample-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0D193167974A513F711F9F /* libPods-InBrainSurveysExample-tvOS.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		A59A00C2802FB699F2EF16E3 /* libPods-InBrainSurveysExample-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C272B703E4FC07DF2A28126 /* libPods-InBrainSurveysExample-tvOS.a */; };
-		A6587EAE621F9C40B207843A /* libPods-InBrainSurveysExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F464D99DD837A19EB1B01BC /* libPods-InBrainSurveysExample.a */; };
-		FFE818EF34D8B54760EC5D24 /* libPods-InBrainSurveysExample-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF82F22D1CF4973EA63332F0 /* libPods-InBrainSurveysExample-tvOSTests.a */; };
+		B2145965603996DE056203B9 /* libPods-InBrainSurveysExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FD772943E254DFF9CC75F0 /* libPods-InBrainSurveysExample.a */; };
+		E1CD4F98F5DF58D63F3F6B3D /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CF5627122CD1D877827432 /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,32 +41,32 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		00A215FFAA35BB330BEAC406 /* Pods-InBrainSurveysExample-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-tvOSTests/Pods-InBrainSurveysExample-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* InBrainSurveysExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InBrainSurveysExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* InBrainSurveysExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InBrainSurveysExampleTests.m; sourceTree = "<group>"; };
-		0F464D99DD837A19EB1B01BC /* libPods-InBrainSurveysExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InBrainSurveysExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		10FC2BEA57F65DF00A1D02BD /* Pods-InBrainSurveysExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample.debug.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample.debug.xcconfig"; sourceTree = "<group>"; };
+		0E6D30D0802E91C152E62B26 /* Pods-InBrainSurveysExample-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-tvOS.release.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-tvOS/Pods-InBrainSurveysExample-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* InBrainSurveysExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InBrainSurveysExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = InBrainSurveysExample/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = InBrainSurveysExample/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = InBrainSurveysExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = InBrainSurveysExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = InBrainSurveysExample/main.m; sourceTree = "<group>"; };
-		1B9CFC97987FA13020019696 /* Pods-InBrainSurveysExample-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-tvOS.release.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-tvOS/Pods-InBrainSurveysExample-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		19A64943DA12EAC379ABB737 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		19CF5627122CD1D877827432 /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B0D193167974A513F711F9F /* libPods-InBrainSurveysExample-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InBrainSurveysExample-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25F0ECBA7C563D3C2028F19E /* Pods-InBrainSurveysExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample.debug.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* InBrainSurveysExample-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InBrainSurveysExample-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* InBrainSurveysExample-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "InBrainSurveysExample-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E551021534C7F779E5BB4A5 /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C272B703E4FC07DF2A28126 /* libPods-InBrainSurveysExample-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InBrainSurveysExample-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FEADB7DDC7FC8215DC695F6 /* Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-tvOSTests/Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		443AC8C50F77C0FA6A249D37 /* libPods-InBrainSurveysExample-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InBrainSurveysExample-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EFE9FF50A299A44AAEAADBF /* Pods-InBrainSurveysExample-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-tvOS/Pods-InBrainSurveysExample-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = InBrainSurveysExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		837C31852B3676502554E4E8 /* Pods-InBrainSurveysExample-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-tvOSTests/Pods-InBrainSurveysExample-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		916B5CF0FBFBB058FA0A0498 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		C9B9D73D0263ECD3DC76E0E3 /* Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-tvOSTests/Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CF82F22D1CF4973EA63332F0 /* libPods-InBrainSurveysExample-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InBrainSurveysExample-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D01E0AFEF86560583D55C5DC /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D48CCE99EAC24B6BD0670558 /* Pods-InBrainSurveysExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample.release.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample.release.xcconfig"; sourceTree = "<group>"; };
-		E3FD1ACAFEA894C6D61970B8 /* Pods-InBrainSurveysExample-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-tvOS/Pods-InBrainSurveysExample-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		98FD772943E254DFF9CC75F0 /* libPods-InBrainSurveysExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InBrainSurveysExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C91FFB7CAE357DA8582B55C2 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F53584C519CA386446278073 /* Pods-InBrainSurveysExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InBrainSurveysExample.release.xcconfig"; path = "Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03DFFA9FA7D5C152F81BF761 /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a in Frameworks */,
+				E1CD4F98F5DF58D63F3F6B3D /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6587EAE621F9C40B207843A /* libPods-InBrainSurveysExample.a in Frameworks */,
+				B2145965603996DE056203B9 /* libPods-InBrainSurveysExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A59A00C2802FB699F2EF16E3 /* libPods-InBrainSurveysExample-tvOS.a in Frameworks */,
+				3DB5DB1A62BF9A1CAF4C46CE /* libPods-InBrainSurveysExample-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFE818EF34D8B54760EC5D24 /* libPods-InBrainSurveysExample-tvOSTests.a in Frameworks */,
+				316CDFECBCD89EFCD536A216 /* libPods-InBrainSurveysExample-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,10 +141,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				0F464D99DD837A19EB1B01BC /* libPods-InBrainSurveysExample.a */,
-				3E551021534C7F779E5BB4A5 /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a */,
-				4C272B703E4FC07DF2A28126 /* libPods-InBrainSurveysExample-tvOS.a */,
-				CF82F22D1CF4973EA63332F0 /* libPods-InBrainSurveysExample-tvOSTests.a */,
+				98FD772943E254DFF9CC75F0 /* libPods-InBrainSurveysExample.a */,
+				19CF5627122CD1D877827432 /* libPods-InBrainSurveysExample-InBrainSurveysExampleTests.a */,
+				1B0D193167974A513F711F9F /* libPods-InBrainSurveysExample-tvOS.a */,
+				443AC8C50F77C0FA6A249D37 /* libPods-InBrainSurveysExample-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,14 +185,14 @@
 		EBACB99F9D65EDC1F256C1CC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				10FC2BEA57F65DF00A1D02BD /* Pods-InBrainSurveysExample.debug.xcconfig */,
-				D48CCE99EAC24B6BD0670558 /* Pods-InBrainSurveysExample.release.xcconfig */,
-				D01E0AFEF86560583D55C5DC /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig */,
-				916B5CF0FBFBB058FA0A0498 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig */,
-				E3FD1ACAFEA894C6D61970B8 /* Pods-InBrainSurveysExample-tvOS.debug.xcconfig */,
-				1B9CFC97987FA13020019696 /* Pods-InBrainSurveysExample-tvOS.release.xcconfig */,
-				C9B9D73D0263ECD3DC76E0E3 /* Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig */,
-				837C31852B3676502554E4E8 /* Pods-InBrainSurveysExample-tvOSTests.release.xcconfig */,
+				25F0ECBA7C563D3C2028F19E /* Pods-InBrainSurveysExample.debug.xcconfig */,
+				F53584C519CA386446278073 /* Pods-InBrainSurveysExample.release.xcconfig */,
+				19A64943DA12EAC379ABB737 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig */,
+				C91FFB7CAE357DA8582B55C2 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig */,
+				4EFE9FF50A299A44AAEAADBF /* Pods-InBrainSurveysExample-tvOS.debug.xcconfig */,
+				0E6D30D0802E91C152E62B26 /* Pods-InBrainSurveysExample-tvOS.release.xcconfig */,
+				2FEADB7DDC7FC8215DC695F6 /* Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig */,
+				00A215FFAA35BB330BEAC406 /* Pods-InBrainSurveysExample-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -204,12 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "InBrainSurveysExampleTests" */;
 			buildPhases = (
-				6B67CAD38416D02201BA4F13 /* [CP] Check Pods Manifest.lock */,
+				95263B1EF5DA86869DC1A695 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				091E6D0D4D1E64FE098CC304 /* [CP] Embed Pods Frameworks */,
-				0030C64D0D9B82DE779521FB /* [CP] Copy Pods Resources */,
+				31C706FC6B1169202A663AB2 /* [CP] Embed Pods Frameworks */,
+				BF703B919BCE130FCE6A021B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -225,14 +225,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "InBrainSurveysExample" */;
 			buildPhases = (
-				0F148696A04738C2E0B7A0C9 /* [CP] Check Pods Manifest.lock */,
+				0CA550190DA33EC7F4D2CFB5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				A263AD7124E7250E76F6EB47 /* [CP] Embed Pods Frameworks */,
-				591DC716EB89F27C3E067397 /* [CP] Copy Pods Resources */,
+				501C75D49C1F8DF6E7850818 /* [CP] Embed Pods Frameworks */,
+				2FF06C58CAEECB9FBF743DB1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,7 +247,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "InBrainSurveysExample-tvOS" */;
 			buildPhases = (
-				FC4DEE6838ED659138695531 /* [CP] Check Pods Manifest.lock */,
+				9D8812183E7A0E0118D7BF8C /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -267,7 +267,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "InBrainSurveysExample-tvOSTests" */;
 			buildPhases = (
-				A2B430FF9B0707152009F478 /* [CP] Check Pods Manifest.lock */,
+				268D96E6C4C3961DCBBB52A6 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -365,24 +365,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0030C64D0D9B82DE779521FB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,25 +379,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		091E6D0D4D1E64FE098CC304 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/InBrainSurveys_SDK_Swift/InBrainSurveys_SDK_Swift.framework/InBrainSurveys_SDK_Swift",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InBrainSurveys_SDK_Swift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0F148696A04738C2E0B7A0C9 /* [CP] Check Pods Manifest.lock */ = {
+		0CA550190DA33EC7F4D2CFB5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -437,79 +401,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		591DC716EB89F27C3E067397 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6B67CAD38416D02201BA4F13 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A263AD7124E7250E76F6EB47 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/InBrainSurveys_SDK_Swift/InBrainSurveys_SDK_Swift.framework/InBrainSurveys_SDK_Swift",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InBrainSurveys_SDK_Swift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A2B430FF9B0707152009F478 /* [CP] Check Pods Manifest.lock */ = {
+		268D96E6C4C3961DCBBB52A6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -531,7 +423,97 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC4DEE6838ED659138695531 /* [CP] Check Pods Manifest.lock */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		2FF06C58CAEECB9FBF743DB1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		31C706FC6B1169202A663AB2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/InBrainSurveys_SDK_Swift/InBrainSurveys_SDK_Swift.framework/InBrainSurveys_SDK_Swift",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InBrainSurveys_SDK_Swift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		501C75D49C1F8DF6E7850818 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/InBrainSurveys_SDK_Swift/InBrainSurveys_SDK_Swift.framework/InBrainSurveys_SDK_Swift",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InBrainSurveys_SDK_Swift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample/Pods-InBrainSurveysExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95263B1EF5DA86869DC1A695 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D8812183E7A0E0118D7BF8C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -551,6 +533,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF703B919BCE130FCE6A021B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InBrainSurveysExample-InBrainSurveysExampleTests/Pods-InBrainSurveysExample-InBrainSurveysExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -646,7 +646,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D01E0AFEF86560583D55C5DC /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig */;
+			baseConfigurationReference = 19A64943DA12EAC379ABB737 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -669,7 +669,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 916B5CF0FBFBB058FA0A0498 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig */;
+			baseConfigurationReference = C91FFB7CAE357DA8582B55C2 /* Pods-InBrainSurveysExample-InBrainSurveysExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -689,7 +689,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10FC2BEA57F65DF00A1D02BD /* Pods-InBrainSurveysExample.debug.xcconfig */;
+			baseConfigurationReference = 25F0ECBA7C563D3C2028F19E /* Pods-InBrainSurveysExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -713,7 +713,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D48CCE99EAC24B6BD0670558 /* Pods-InBrainSurveysExample.release.xcconfig */;
+			baseConfigurationReference = F53584C519CA386446278073 /* Pods-InBrainSurveysExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -735,7 +735,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3FD1ACAFEA894C6D61970B8 /* Pods-InBrainSurveysExample-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 4EFE9FF50A299A44AAEAADBF /* Pods-InBrainSurveysExample-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -763,7 +763,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B9CFC97987FA13020019696 /* Pods-InBrainSurveysExample-tvOS.release.xcconfig */;
+			baseConfigurationReference = 0E6D30D0802E91C152E62B26 /* Pods-InBrainSurveysExample-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -791,7 +791,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9B9D73D0263ECD3DC76E0E3 /* Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 2FEADB7DDC7FC8215DC695F6 /* Pods-InBrainSurveysExample-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -818,7 +818,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 837C31852B3676502554E4E8 /* Pods-InBrainSurveysExample-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 00A215FFAA35BB330BEAC406 /* Pods-InBrainSurveysExample-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
