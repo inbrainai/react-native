@@ -12,7 +12,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     this.state = {
       rewards: [],
       points: 0,
-      nativeSurveys: []
+      nativeSurveys: [],
+      placementId: undefined
     };
   }
 
@@ -23,7 +24,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 
     // Init  options
     const options: InitOptions = {
-      sessionUid: 'sessionId',
+      sessionUid: 'newSessionId',
       userId: 'react-testing@inbrain.ai',
       dataPoints: { gender: 'male', age: '25' },
       title: 'inBrain Surveys',
@@ -43,7 +44,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     // Initialise the SDK
     inbrain.init(CLIENT_ID, CLIENT_SECRET, options).then(() => {
       this.appendLog(`[Init SUCCESS]`);
-    }).catch((err: any) => {
+    }).catch((err: Error) => {
       this.appendLog(`[Init ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -68,7 +69,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   onClickShowSurveys = () => {
     inbrain.showSurveys().then(() => {
       this.appendLog(`[Show Surveys SUCCESS]`);
-    }).catch((err: any) => {
+    }).catch((err: Error) => {
       this.appendLog(`[Show Surveys ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -83,7 +84,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 
       const points = result.reduce((sum, reward) => sum + reward.amount, 0);
       this.setState({ points })
-    }).catch((err: any) => {
+    }).catch((err: Error) => {
       this.appendLog(`[Get rewards ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -93,10 +94,10 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
    * How to call inbrain.getNativeSurveys()
    */
   onClickShowNativeSurveys = () => {
-    inbrain.getNativeSurveys().then((nativeSurveys: InBrainNativeSurveys[]) => {
+    inbrain.getNativeSurveys(this.state.placementId).then((nativeSurveys: InBrainNativeSurveys[]) => {
       this.appendLog(`[Get Native Surveys SUCCESS: ${nativeSurveys.length} surveys]`);
       this.setState({ nativeSurveys });
-    }).catch((err: any) => {
+    }).catch((err: Error) => {
       this.appendLog(`[Get Native Surveys ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -106,9 +107,9 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
    * How to call inbrain.showNativeSurvey(id: string)
    */
   onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurveys) => {
-    inbrain.showNativeSurvey(nativeSurvey.id).then(() => {
+    inbrain.showNativeSurvey(nativeSurvey.id, this.state.placementId).then(() => {
       this.appendLog(`[Show Native Surveys SUCCESS`);
-    }).catch((err: any) => {
+    }).catch((err: Error) => {
       this.appendLog(`[Show Native Survey ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -120,7 +121,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   checkSurveysAvailable = () => {
     inbrain.checkSurveysAvailable().then((available: boolean) => {
       this.appendLog(`[Check Surveys Available:${available}`);
-    }).catch((err: any) => {
+    }).catch((err: Error) => {
       this.appendLog(`[Check Surveys Available ERROR] => ${err.message || err}`);
       console.log(err);
     });
@@ -174,7 +175,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 type InbBrainAppState = {
   points: Number,
   rewards: InBrainReward[],
-  nativeSurveys: InBrainNativeSurveys[]
+  nativeSurveys: InBrainNativeSurveys[],
+  placementId: string | undefined
 };
 
 /**
