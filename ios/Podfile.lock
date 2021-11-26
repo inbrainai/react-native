@@ -67,7 +67,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - inbrain-surveys (2.2.0):
+  - inbrain-surveys (2.2.1):
     - React
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
@@ -439,7 +439,7 @@ SPEC CHECKSUMS:
   FlipperKit: ab353d41aea8aae2ea6daaf813e67496642f3d7d
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  inbrain-surveys: c7df81b43f3341d6e399c5414dc0f5318a518951
+  inbrain-surveys: e14fa77e3ea7acc8e3da6bb186c54847953a9fe5
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
   RCTRequired: 48884c74035a0b5b76dbb7a998bd93bcfc5f2047
   RCTTypeSafety: edf4b618033c2f1c5b7bc3d90d8e085ed95ba2ab
