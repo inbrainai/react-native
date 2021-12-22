@@ -1,17 +1,17 @@
 import { InBrainNativeSurveys } from 'inbrain-surveys';
-import React, {PureComponent} from 'react';
-import { StyleSheet, Text, View, ImageBackground, ScrollView, TouchableOpacity, Image} from 'react-native';
+import React, { PureComponent } from 'react';
+import { StyleSheet, Text, View, ImageBackground, ScrollView, TouchableOpacity, Image } from 'react-native';
 
 export default class NativeSurveysList extends PureComponent<NativeSurveysListProps> {
 
   render() {
     return (
-      <ScrollView style={{flex:1}}>
-          {
-            this.props.nativeSurveys.map( survey => 
-              <NativeSurvey key={survey.id} survey={survey} onPress={this.props.onClickShowNativeSurvey} />
-            )
-          }
+      <ScrollView style={{ flex: 1 }}>
+        {
+          this.props.nativeSurveys.map(survey =>
+            <NativeSurvey key={survey.id} survey={survey} onPress={this.props.onClickShowNativeSurvey} />
+          )
+        }
       </ScrollView>
     );
   }
@@ -21,26 +21,26 @@ export default class NativeSurveysList extends PureComponent<NativeSurveysListPr
 /**
  * Button in the action lise
  */
-function NativeSurvey(props: NativeSurveyProps) { 
+function NativeSurvey(props: NativeSurveyProps) {
   const survey = props.survey
   return <TouchableOpacity onPress={() => props.onPress(survey)}>
-            <View style={styles.surveyView} >
-              <ImageBackground
-              source={require('../assets/NativeSurveysButton.png')}
-              resizeMode={"cover"}
-              style={styles.imageBackground}
-            >
-                    <View style={styles.textSurvey}>
-                      <Text style={styles.textSurveyDuration}>{`${survey.time} minutes`}</Text>
-                      <View>
-                      <Text style={styles.textSurveyPoints}>{`${survey.value} points`}</Text>
-                      <Text style={styles.textSurveyData}>{`Currency sale: ${survey.currencySale}`}</Text>
-                      <Text style={styles.textSurveyData}>{`Multipler: ${survey.multiplier}`}</Text>
-                      </View>
-                    </View>
-            </ImageBackground>
+    <View style={styles.surveyView} >
+      <ImageBackground
+        source={require('../assets/NativeSurveysButton.png')}
+        resizeMode={"cover"}
+        style={styles.imageBackground}
+      >
+        <View style={styles.textSurvey}>
+          <Text style={styles.textSurveyDuration}>{`${survey.time} minutes`}</Text>
+          <View>
+            <Text style={styles.textSurveyPoints}>{`${survey.value} points`}</Text>
+            <Text style={styles.textSurveyData}>{`Currency sale: ${survey.currencySale}`}</Text>
+            <Text style={styles.textSurveyData}>{`Multipler: ${survey.multiplier}`}</Text>
           </View>
-        </TouchableOpacity>
+        </View>
+      </ImageBackground>
+    </View>
+  </TouchableOpacity>
 }
 
 type NativeSurveyProps = {
@@ -61,18 +61,18 @@ type NativeSurveysListProps = {
  */
 const styles = StyleSheet.create({
 
-  surveyView: { 
-    height: 100, 
+  surveyView: {
+    height: 100,
     flexDirection: 'column'
   },
   imageBackground: {
     width: '100%'
   },
   textSurvey: {
-    flexDirection:'row',
+    flexDirection: 'row',
     height: '100%',
-    marginLeft:60,
-    marginRight:60,
+    marginLeft: 60,
+    marginRight: 60,
     alignItems: 'center',
   },
   textSurveyDuration: {
