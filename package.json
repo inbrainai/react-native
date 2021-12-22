@@ -13,11 +13,7 @@
     "clean:ios": "cd ios && xcodebuild clean && cd ../"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "inbrain-surveys": "2.2.3",
-=======
     "inbrain-surveys": "2.2.4",
->>>>>>> 27ebbca10d18a0334110e68bab02ad0d8d397641
     "react": "16.13.1",
     "react-native": "0.63.3"
   },
