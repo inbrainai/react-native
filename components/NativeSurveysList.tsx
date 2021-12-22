@@ -32,7 +32,11 @@ function NativeSurvey(props: NativeSurveyProps) {
             >
                     <View style={styles.textSurvey}>
                       <Text style={styles.textSurveyDuration}>{`${survey.time} minutes`}</Text>
+                      <View>
                       <Text style={styles.textSurveyPoints}>{`${survey.value} points`}</Text>
+                      <Text style={styles.textSurveyData}>{`Currency sale: ${survey.currencySale}`}</Text>
+                      <Text style={styles.textSurveyData}>{`Multipler: ${survey.multiplier}`}</Text>
+                      </View>
                     </View>
             </ImageBackground>
           </View>
@@ -70,7 +74,6 @@ const styles = StyleSheet.create({
     marginLeft:60,
     marginRight:60,
     alignItems: 'center',
-
   },
   textSurveyDuration: {
     textAlign: 'left',
@@ -81,6 +84,10 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     fontWeight: 'bold',
     color: '#47a3dc'
+  },
+  textSurveyData: {
+    textAlign: 'right',
+    fontSize: 7,
   },
 
 });
