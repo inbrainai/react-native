@@ -96,7 +96,6 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   onClickShowNativeSurveys = () => {
     inbrain.getNativeSurveys(this.state.placementId).then((nativeSurveys: InBrainNativeSurveys[]) => {
       this.appendLog(`[Get Native Surveys SUCCESS: ${nativeSurveys.length} surveys]`);
-      console.log(nativeSurveys);
       this.setState({ nativeSurveys });
     }).catch((err: Error) => {
       this.appendLog(`[Get Native Surveys ERROR] => ${err.message || err}`);
