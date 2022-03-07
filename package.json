@@ -13,9 +13,9 @@
     "clean:ios": "cd ios && xcodebuild clean && cd ../"
   },
   "dependencies": {
-    "inbrain-surveys": "2.2.4",
+    "inbrain-surveys": "2.3.0",
     "react": "16.13.1",
-    "react-native": "0.63.3"
+    "react-native": "0.63.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
