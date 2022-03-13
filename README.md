@@ -6,10 +6,11 @@ All the logic is done in `App.jsx` with the differents SDK method calls.
 
 ## Requirements
 This SDK is targeted to the following tools:
-- XCode 11.4
-- CocoaPods 1.9
+- XCode 12
+- iOS 11.0;
+- CocoaPods 1.10+
 - Swift 5
-- React Native >=0.60.0
+- React Native >=0.63.0
 
 ## Installation
 Simply run: 
@@ -40,5 +41,3 @@ The application comes with a set of hardcoded test credentials. You can change t
 ### Android
 Follow the installation instructions. Go to the `android/` folder and run `./gradlew clean && gradlew assembleRelease`
 The apk will be generated at `android/app/build/outputs/apk/release/app-release.apk` and is signed using a self-signed certificate.
-
-
