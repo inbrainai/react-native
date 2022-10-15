@@ -1,48 +1,72 @@
 {
-  "name": "inbrainsurveysexample",
-  "version": "0.0.1",
-  "private": true,
+  "name": "inbrain-surveys",
+  "title": "Inbrain Survey",
+  "version": "2.3.3",
+  "description": "Survey library to monetize your mobile app, provided by inBrain.ai",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "clean": "npm run clean:android && npm run clean:ios",
-    "clean:android": "cd android && ./gradlew clean && cd ../",
-    "clean:ios": "cd ios && xcodebuild clean && cd ../"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "build": "./node_modules/typescript/bin/tsc",
+    "watch": "./node_modules/typescript/bin/tsc -w",
+    "clean": "rm -rf lib/ && cd ios && rm -rf build && cd .. && cd android && ./gradlew clean && rm -rf android/.idea && cd ..",
+    "prepublishOnly": "npm run clean && npm run build"
   },
-  "dependencies": {
-    "react": "16.13.1",
-    "react-native": "0.63.4",
-    "inbrain-surveys": "2.3.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inbrainai/sdk-react",
+    "baseUrl": "https://github.com/inbrainai/sdk-react"
   },
+  "keywords": [
+    "react-native",
+    "inbrain",
+    "surveys",
+    "inbrain.ai",
+    "monetization",
+    "surveys",
+    "Market Research",
+    "market",
+    "research",
+    "advertising",
+    "monetisation",
+    "tap",
+    "revenue",
+    "app",
+    "earn"
+  ],
+  "author": {
+    "name": "Paul Saulue-Laborde",
+    "email": "psaulue@gmail.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/runtime": "^7.8.4",
-    "@react-native-community/eslint-config": "^1.1.0",
-    "@types/jest": "^25.2.3",
-    "@types/react-native": "^0.63.2",
-    "@types/react-test-renderer": "^16.9.2",
-    "babel-jest": "^25.1.0",
-    "eslint": "^6.5.1",
-    "jest": "^25.1.0",
-    "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1",
-    "typescript": "^3.8.3"
+    "react": "18.1.0",
+    "react-native": "0.70.2",
+    "@types/react": "^16.11.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@tsconfig/react-native": "^2.0.2",
+    "@types/jest": "^26.0.23",
+    "@types/react-native": "^0.70.4",
+    "@types/react-test-renderer": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.32.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "0.72.3",
+    "react-test-renderer": "18.1.0",
+    "typescript": "^4.8.3"
   },
-  "resolutions": {
-    "@types/react": "^16"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  }
+  "files": [
+    "android",
+    "ios",
+    "lib",
+    "inbrain-surveys.podspec"
+  ]
 }
