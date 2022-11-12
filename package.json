@@ -1,52 +1,20 @@
 {
-  "name": "inbrain-surveys",
-  "title": "Inbrain Survey",
-  "version": "2.3.3",
-  "description": "Survey library to monetize your mobile app, provided by inBrain.ai",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "name": "InbrainReactNativeExample",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "build": "./node_modules/typescript/bin/tsc",
-    "watch": "./node_modules/typescript/bin/tsc -w",
-    "clean": "rm -rf lib/ && cd ios && rm -rf build && cd .. && cd android && ./gradlew clean && rm -rf android/.idea && cd ..",
-    "prepublishOnly": "npm run clean && npm run build"
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/inbrainai/sdk-react",
-    "baseUrl": "https://github.com/inbrainai/sdk-react"
-  },
-  "keywords": [
-    "react-native",
-    "inbrain",
-    "surveys",
-    "inbrain.ai",
-    "monetization",
-    "surveys",
-    "Market Research",
-    "market",
-    "research",
-    "advertising",
-    "monetisation",
-    "tap",
-    "revenue",
-    "app",
-    "earn"
-  ],
-  "author": {
-    "name": "Paul Saulue-Laborde",
-    "email": "psaulue@gmail.com"
-  },
-  "license": "MIT",
-  "licenseFilename": "LICENSE",
-  "readmeFilename": "README.md",
-
-  "devDependencies": {
+  "dependencies": {
     "react": "18.1.0",
-    "react-native": "0.70.2",
-    "@types/react": "^16.11.0",
-    "babel-plugin-module-resolver": "^4.0.0",
+    "react-native": "0.70.4",
+    "inbrain-surveys": "2.4.1"
+  }, 
+  "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
@@ -63,10 +31,15 @@
     "react-test-renderer": "18.1.0",
     "typescript": "^4.8.3"
   },
-  "files": [
-    "android",
-    "ios",
-    "lib",
-    "inbrain-surveys.podspec"
-  ]
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
 }
