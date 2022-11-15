@@ -166,7 +166,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
    */
   onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurveys) => {
     inbrain
-      .showNativeSurvey(nativeSurvey.id, this.state.placementId)
+      .showNativeSurvey(nativeSurvey.id, nativeSurvey.searchId)
       .then(() => {
         this.printLog('[Show Native Surveys SUCCESS]');
       })
@@ -262,7 +262,6 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     return true;
   };
 
-
 }
 
 
@@ -274,6 +273,7 @@ type InbBrainAppState = {
   rewards: InBrainReward[];
   nativeSurveys: InBrainNativeSurveys[];
   placementId: string | undefined;
+
 };
 
 /**
