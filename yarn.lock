@@ -3953,10 +3953,10 @@
   "resolved" "https://registry.npmjs.org/imurmurhash/-/imurmurhash-0.1.4.tgz"
   "version" "0.1.4"
 
-"inbrain-surveys@2.4.2":
-  "integrity" "sha512-EOka/tUKFSAJM1yM7jGQ9tC1sJu+waXMYQo6zxXt4XMJj70pIbU/7gQgadr7VqGGrdNc5ynmGyKih0AYDNpsiA=="
-  "resolved" "http://localhost:4873/inbrain-surveys/-/inbrain-surveys-2.4.2.tgz"
-  "version" "2.4.2"
+"inbrain-surveys@2.4.3":
+  "integrity" "sha512-JJXtEiVcDTZhK1LPsQggqpB4aTNIfLSEPhtQi84M1iTZe56MOMJvm2iVmAwreDbHtmaR26PjK097PJUCHDDYcg=="
+  "resolved" "http://localhost:4873/inbrain-surveys/-/inbrain-surveys-2.4.3.tgz"
+  "version" "2.4.3"
 
 "inflight@^1.0.4":
   "integrity" "sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA=="

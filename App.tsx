@@ -153,6 +153,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         this.printLog(
           `[Get Native Surveys SUCCESS: ${nativeSurveys.length} surveys]`,
         );
+      
         this.setState({ nativeSurveys });
       })
       .catch((err: Error) => {
