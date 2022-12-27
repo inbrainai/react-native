@@ -5,35 +5,22 @@
  * @format
  */
 
-import React, { Component, type PropsWithChildren } from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   SafeAreaView,
-  TouchableOpacity,
   Image,
-  ImageBackground,
-  ScrollView,
-  StatusBar,
-  useColorScheme,
   Button,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
 import inbrain, {
-  InBrainNativeSurveys,
+  InBrainNativeSurvey,
   InBrainReward,
   InitOptions,
   InBrainSurveyFilter,
-  InBrainSurveyCategory
+  InBrainSurveyCategory,
 } from 'inbrain-surveys';
 
 import { BackHandler } from 'react-native';
@@ -41,7 +28,6 @@ import ActionList from './components/ActionList';
 import NativeSurveysList from './components/NativeSurveysList';
 
 export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
-
   constructor(props: InbBrainAppProps) {
     super(props);
     this.state = {
@@ -62,7 +48,6 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     const options: InitOptions = {
       sessionUid: 'newSessionId',
       userId: 'RNSDKTestUser',
-      dataPoints: { gender: 'male', age: '25' },
       title: 'inBrain Surveys',
       statusBar: {
         lightStatusBar: true,
@@ -73,8 +58,6 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         buttonsColor: '#ABCDEF',
         hasShadow: false,
       },
-      isS2S: false,
-      language: 'en-us',
     };
 
     // Initialise the SDK
@@ -87,6 +70,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         this.printLog(`[Init ERROR] => ${err.message || err}`);
         console.log(err);
       });
+
 
     // OnClose listeners
     inbrain.setOnCloseListener(() => {
@@ -143,17 +127,14 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   onClickShowNativeSurveys = () => {
     let config:InBrainSurveyFilter = {
       placementId: this.state.placementId,
-      categoryIds: [InBrainSurveyCategory.Automotive],
+      categoryIds: [InBrainSurveyCategory.Automotive, InBrainSurveyCategory.Business],
       excludedCategoryIds: [InBrainSurveyCategory.BeveragesAlcoholic]
     };
 
+
     inbrain
       .getNativeSurveys(config)
-      .then((nativeSurveys: InBrainNativeSurveys[]) => {
-        this.printLog(
-          `[Get Native Surveys SUCCESS: ${nativeSurveys.length} surveys]`,
-        );
-      
+      .then((nativeSurveys: InBrainNativeSurvey[]) => {
         this.setState({ nativeSurveys });
       })
       .catch((err: Error) => {
@@ -165,7 +146,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   /**
    * How to call inbrain.showNativeSurvey(id: string)
    */
-  onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurveys) => {
+  onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurvey) => {
     inbrain
       .showNativeSurvey(nativeSurvey.id, nativeSurvey.searchId)
       .then(() => {
@@ -227,7 +208,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 
 
         <View>
-          <Text style={styles.points}>Total Points: {this.state.points}</Text>
+          <Text style={styles.points}>Total Points: {this.state.points.toString()}</Text>
         </View>
 
        
@@ -272,7 +253,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 type InbBrainAppState = {
   points: Number;
   rewards: InBrainReward[];
-  nativeSurveys: InBrainNativeSurveys[];
+  nativeSurveys: InBrainNativeSurvey[];
   placementId: string | undefined;
 
 };
