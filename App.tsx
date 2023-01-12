@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
@@ -23,11 +23,12 @@ import inbrain, {
   InBrainSurveyCategory,
 } from 'inbrain-surveys';
 
-import { BackHandler } from 'react-native';
+import {BackHandler} from 'react-native';
 import ActionList from './components/ActionList';
 import NativeSurveysList from './components/NativeSurveysList';
 
 export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
+  public config: InBrainSurveyFilter;
   constructor(props: InbBrainAppProps) {
     super(props);
     this.state = {
@@ -35,6 +36,16 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       points: 0,
       nativeSurveys: [],
       placementId: undefined,
+    };
+
+    this.config = {
+      placementId: this.state.placementId,
+      categoryIds: [
+        InBrainSurveyCategory.Automotive,
+        InBrainSurveyCategory.Business,
+        InBrainSurveyCategory.SmokingTobacco,
+      ],
+      excludedCategoryIds: [InBrainSurveyCategory.BeveragesAlcoholic],
     };
   }
 
@@ -71,16 +82,12 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         console.log(err);
       });
 
-
-    // OnClose listeners
-    inbrain.setOnCloseListener(() => {
+    inbrain.setOnSurveysCloseLister(() => {
       this.sumRewards();
+      // this.confirmReward();
       this.printLog('[onClose SUCCESS] => ');
+      this.getNativeSurveys(this.config);
     });
-    inbrain.setOnCloseListenerFromPage(() =>{
-      this.sumRewards();
-      this.printLog('[onCloseFromPage SUCCESS] => ');
-  });
 
     // On back button, clean the state to go back to Action list page
     BackHandler.addEventListener('hardwareBackPress', this.cleanState);
@@ -108,11 +115,10 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     inbrain
       .getRewards()
       .then((result: InBrainReward[]) => {
-
         const points = result.reduce((sum, reward) => sum + reward.amount, 0);
         this.printLog(`[Get rewards SUCCESS] => Adding points ${points}`);
-
-        this.setState({ points });
+        this.setState({points});
+        this.confirmReward(result);
       })
       .catch((err: Error) => {
         this.printLog(`[Get rewards ERROR] => ${err.message || err}`);
@@ -121,21 +127,26 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   };
 
   /**
+   * How to call inbrain.confirmReward()
+   */
+  confirmReward = (rewards: InBrainReward[]) => {
+    inbrain.confirmRewards(rewards).then(() => {
+      this.printLog('[Confirm rewards SUCCESS]');
+    });
+  };
+
+  onClickShowNativeSurveys = () => {
+    this.getNativeSurveys(this.config);
+  };
+
+  /**
    * How to call inbrain.getNativeSurveys()
    */
-  
-  onClickShowNativeSurveys = () => {
-    let config:InBrainSurveyFilter = {
-      placementId: this.state.placementId,
-      categoryIds: [InBrainSurveyCategory.Automotive, InBrainSurveyCategory.Business],
-      excludedCategoryIds: [InBrainSurveyCategory.BeveragesAlcoholic]
-    };
-
-
+  getNativeSurveys = (config: InBrainSurveyFilter) => {
     inbrain
       .getNativeSurveys(config)
       .then((nativeSurveys: InBrainNativeSurvey[]) => {
-        this.setState({ nativeSurveys });
+        this.setState({nativeSurveys});
       })
       .catch((err: Error) => {
         this.printLog(`[Get Native Surveys ERROR] => ${err.message || err}`);
@@ -198,39 +209,33 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         )}
 
         {this.state.nativeSurveys.length > 0 && (
-       
-              <NativeSurveysList
+          <NativeSurveysList
             nativeSurveys={this.state.nativeSurveys}
             onClickShowNativeSurvey={this.onClickShowNativeSurvey}
           />
-          
         )}
 
-
         <View>
-          <Text style={styles.points}>Total Points: {this.state.points.toString()}</Text>
+          <Text style={styles.points}>
+            Total Points: {this.state.points.toString()}
+          </Text>
         </View>
 
-       
-        <View style={{ alignItems: 'center' }}>
+        <View style={{alignItems: 'center'}}>
           <Image
             style={styles.imageLogo}
             source={require('./assets/Logo.png')}
           />
         </View>
         {this.state.nativeSurveys.length > 0 && (
-       
-       <View>
-       <Button
-         onPress={this.cleanState}
-         title="Close Survey List"
-         color="#841584"
-       />
-       </View>
-     
-   )}
-  
-
+          <View>
+            <Button
+              onPress={this.cleanState}
+              title="Close Survey List"
+              color="#841584"
+            />
+          </View>
+        )}
       </SafeAreaView>
     );
   }
@@ -240,12 +245,10 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
    */
   cleanState = () => {
     this.sumRewards();
-    this.setState({ nativeSurveys: [] });
+    this.setState({nativeSurveys: []});
     return true;
   };
-
 }
-
 
 /**
  * Application state
@@ -255,15 +258,12 @@ type InbBrainAppState = {
   rewards: InBrainReward[];
   nativeSurveys: InBrainNativeSurvey[];
   placementId: string | undefined;
-
 };
 
 /**
  * Application props
  */
 type InbBrainAppProps = {};
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -303,7 +303,6 @@ const styles = StyleSheet.create({
     height: 35,
     marginTop: 30,
     marginLeft: 30,
-   
   },
 });
 
