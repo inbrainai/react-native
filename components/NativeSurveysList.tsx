@@ -4,10 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
   ScrollView,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 
 export default class NativeSurveysList extends PureComponent<NativeSurveysListProps> {
@@ -34,16 +32,13 @@ function NativeSurvey(props: NativeSurveyProps) {
   return (
     <TouchableOpacity onPress={() => props.onPress(survey)}>
       <View style={styles.surveyView}>
-        <ImageBackground
-          source={require('../assets/NativeSurveysButton.png')}
-          resizeMode={'cover'}
-          style={styles.imageBackground}>
+        <View style={[styles.card, styles.shadow]}>
           <View style={styles.textSurvey}>
             <Text
               style={
                 styles.textSurveyDuration
               }>{`${survey.time} minutes`}</Text>
-            <View>
+            <View style={styles.surveyInfo}>
               <Text
                 style={
                   styles.textSurveyPoints
@@ -60,14 +55,12 @@ function NativeSurvey(props: NativeSurveyProps) {
                 style={
                   styles.textSurveyData
                 }>{`Conversion: ${survey.conversionLevel.name}`}</Text>
-              <Text
-                  style={
-                    styles.textSurveyData
-                  }>{`ID: ${survey.id}`}</Text>
-              <MapCategories categories={survey.namedCategories} />
+              {survey.namedCategories && (
+                <MapCategories categories={survey.namedCategories} />
+              )}
             </View>
           </View>
-        </ImageBackground>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -79,7 +72,8 @@ function MapCategories(props: NativeSurveyCategoriesProps) {
     .join(', ');
   return (
     <Text
-      style={styles.textSurveyData}>{`Categories: ${categoriesList} `}</Text>
+      numberOfLines={2}
+      style={styles.textSurveyData}>{`Categories: ${categoriesList}`}</Text>
   );
 }
 
@@ -108,14 +102,9 @@ const styles = StyleSheet.create({
     height: 100,
     flexDirection: 'column',
   },
-  imageBackground: {
-    width: '100%',
-  },
   textSurvey: {
     flexDirection: 'row',
     height: '100%',
-    marginLeft: 60,
-    marginRight: 60,
     alignItems: 'center',
   },
   textSurveyDuration: {
@@ -131,5 +120,27 @@ const styles = StyleSheet.create({
   textSurveyData: {
     textAlign: 'right',
     fontSize: 7,
+  },
+  card: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+    elevation: 10,
+  },
+  surveyIngo: {
+    flex: 2,
   },
 });
