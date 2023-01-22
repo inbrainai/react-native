@@ -84,7 +84,6 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 
     inbrain.setOnSurveysCloseLister(() => {
       this.sumRewards();
-      // this.confirmReward();
       this.printLog('[onClose SUCCESS] => ');
       this.getNativeSurveys(this.config);
     });
