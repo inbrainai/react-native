@@ -21,7 +21,9 @@ import inbrain, {
   InitOptions,
   InBrainSurveyFilter,
   InBrainSurveyCategory,
-} from 'inbrain-surveys';
+  NavigationBarConfig,
+  StatusBarConfig,
+} from './node_modules/inbrain-surveys';
 
 import { BackHandler } from 'react-native';
 import ActionList from './components/ActionList';
@@ -40,38 +42,27 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 
   componentDidMount = () => {
     // To test with your account, replace the credentials below
-    const CLIENT_ID = '852dd4b7-1d05-4803-a1e3-037d0fcfe18f';
+    const CLIENT_ID = '35c6e720-4f76-4d25-9e18-e718678e27ae';
     const CLIENT_SECRET =
-      'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
-
-    // Init  options
-    const options: InitOptions = {
-      sessionUid: 'newSessionId',
-      userId: 'RNSDKTestUser',
-      title: 'inBrain Surveys',
-      statusBar: {
-        lightStatusBar: true,
-      },
-      navigationBar: {
-        backgroundColor: '#EAAAAA',
-        titleColor: '#222AAA',
-        buttonsColor: '#ABCDEF',
-        hasShadow: false,
-      },
+     'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
+    const userId = 'RNSDKTestUser';
+    
+    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET, userId);
+    const navBarConfig: NavigationBarConfig = {
+      backgroundColor: '#EAAAAA', 
+      titleColor: '#222AAA',
+      buttonsColor: '#ABCDEF',
+      hasShadow: false,
+      title: "InBrain Sample App"
     };
+    inbrain.setNavigationBarConfig(navBarConfig);
 
-    // Initialise the SDK
-    inbrain
-      .init(CLIENT_ID, CLIENT_SECRET, options)
-      .then(() => {
-        this.printLog('[Init SUCCESS]');
-      })
-      .catch((err: Error) => {
-        this.printLog(`[Init ERROR] => ${err.message || err}`);
-        console.log(err);
-      });
-
-
+    const statusBarConfig: StatusBarConfig = {
+      statusBarColor: '#EAAAAA', 
+      lightStatusBar: false
+    };
+    inbrain.setStatusBarConfig(statusBarConfig);
+    
     // OnClose listeners
     inbrain.setOnCloseListener(() => {
       this.sumRewards();
@@ -135,7 +126,6 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       categoryIds: [InBrainSurveyCategory.Automotive, InBrainSurveyCategory.Business],
       excludedCategoryIds: [InBrainSurveyCategory.BeveragesAlcoholic]
     };
-
 
     inbrain
       .getNativeSurveys(config)
