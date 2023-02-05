@@ -95,11 +95,6 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       this.getNativeSurveys(this.filter);
     });
 
-    inbrain.setOnSurveysCloseLister((data) => {
-      this.sumRewards();
-      this.printLog('[setSurveysCloseListener SUCCESS]');
-    })
-
     // On back button, clean the state to go back to Action list page
     BackHandler.addEventListener('hardwareBackPress', this.cleanState);
   };
