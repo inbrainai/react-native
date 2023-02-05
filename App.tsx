@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
@@ -18,18 +18,18 @@ import {
 import inbrain, {
   InBrainNativeSurvey,
   InBrainReward,
-  InitOptions,
   InBrainSurveyFilter,
   InBrainSurveyCategory,
-  NavigationBarConfig,
   StatusBarConfig,
-} from './node_modules/inbrain-surveys';
+  NavigationBarConfig,
+} from 'inbrain-surveys';
 
-import { BackHandler } from 'react-native';
+import {BackHandler} from 'react-native';
 import ActionList from './components/ActionList';
 import NativeSurveysList from './components/NativeSurveysList';
 
 export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
+  public filter: InBrainSurveyFilter;
   constructor(props: InbBrainAppProps) {
     super(props);
     this.state = {
@@ -38,40 +38,62 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       nativeSurveys: [],
       placementId: undefined,
     };
+
+    this.filter = {
+      placementId: this.state.placementId,
+      categoryIds: [
+        InBrainSurveyCategory.Automotive,
+        InBrainSurveyCategory.Business,
+        InBrainSurveyCategory.SmokingTobacco,
+      ],
+      excludedCategoryIds: [InBrainSurveyCategory.BeveragesAlcoholic],
+    };
   }
 
   componentDidMount = () => {
     // To test with your account, replace the credentials below
     const CLIENT_ID = '35c6e720-4f76-4d25-9e18-e718678e27ae';
     const CLIENT_SECRET =
-     'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
-    const userId = 'RNSDKTestUser';
-    
-    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET, userId);
-    const navBarConfig: NavigationBarConfig = {
-      backgroundColor: '#EAAAAA', 
+      'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
+    const USER_ID = 'RNSDKTestUser';
+
+    //Init sdk (required)
+    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET, USER_ID);
+
+    /***** Optional methods *****/
+
+    //set or change userID (can be set in setInBrain, ot using this method)
+    inbrain.setSessionID('setUserID');
+    // set user session ID
+    inbrain.setSessionID('newSessionId');
+    // set Data options if required,
+    inbrain.setDataOptions({age: '21'});
+
+    /***** UI methods *****/
+
+    // change status bar color, lightStatusBar - works only for IOS, statusBarColor only for android
+    const statusBarConfig: StatusBarConfig = {
+      lightStatusBar: true,
+      statusBarColor: '#EAAAAA',
+    };
+    inbrain.setStatusBarConfig(statusBarConfig);
+
+    //set navigationBar UI settings
+    const navigationBarConfig: NavigationBarConfig = {
+      title: 'inBrain Surveys',
+      backgroundColor: '#EAAAAA',
       titleColor: '#222AAA',
       buttonsColor: '#ABCDEF',
       hasShadow: false,
-      title: "InBrain Sample App"
     };
-    inbrain.setNavigationBarConfig(navBarConfig);
+    inbrain.setNavigationBarConfig(navigationBarConfig);
 
-    const statusBarConfig: StatusBarConfig = {
-      statusBarColor: '#EAAAAA', 
-      lightStatusBar: false
-    };
-    inbrain.setStatusBarConfig(statusBarConfig);
-    
-    // OnClose listeners
-    inbrain.setOnCloseListener(() => {
-      this.sumRewards();
+    // add lister
+    inbrain.setOnSurveysCloseLister(() => {
       this.printLog('[onClose SUCCESS] => ');
-    });
-    inbrain.setOnCloseListenerFromPage(() =>{
       this.sumRewards();
-      this.printLog('[onCloseFromPage SUCCESS] => ');
-  });
+      this.getNativeSurveys(this.filter);
+    });
 
     inbrain.setOnSurveysCloseLister((data) => {
       this.sumRewards();
@@ -104,11 +126,10 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     inbrain
       .getRewards()
       .then((result: InBrainReward[]) => {
-
         const points = result.reduce((sum, reward) => sum + reward.amount, 0);
         this.printLog(`[Get rewards SUCCESS] => Adding points ${points}`);
-
-        this.setState({ points });
+        this.setState({points});
+        this.confirmReward(result);
       })
       .catch((err: Error) => {
         this.printLog(`[Get rewards ERROR] => ${err.message || err}`);
@@ -117,20 +138,27 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   };
 
   /**
+   * How to call inbrain.confirmReward()
+   */
+  confirmReward = (rewards: InBrainReward[]) => {
+    inbrain.confirmRewards(rewards).then(() => {
+      this.printLog('[Confirm rewards SUCCESS]');
+    });
+  };
+
+  onClickShowNativeSurveys = () => {
+    this.getNativeSurveys(this.filter);
+  };
+
+  /**
    * How to call inbrain.getNativeSurveys()
    */
-  
-  onClickShowNativeSurveys = () => {
-    let config:InBrainSurveyFilter = {
-      placementId: this.state.placementId,
-      categoryIds: [InBrainSurveyCategory.Automotive, InBrainSurveyCategory.Business],
-      excludedCategoryIds: [InBrainSurveyCategory.BeveragesAlcoholic]
-    };
-
+  getNativeSurveys = (config: InBrainSurveyFilter) => {
     inbrain
       .getNativeSurveys(config)
       .then((nativeSurveys: InBrainNativeSurvey[]) => {
-        this.setState({ nativeSurveys });
+        this.printLog('[Get Native Surveys SUCCESS]');
+        this.setState({nativeSurveys});
       })
       .catch((err: Error) => {
         this.printLog(`[Get Native Surveys ERROR] => ${err.message || err}`);
@@ -179,13 +207,13 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         <View style={styles.headerContainer}>
           <Text style={styles.title}>inBrain Surveys</Text>
           <Text style={styles.appSubtitle}>
-            {this.state.nativeSurveys.length == 0
+            {this.state.nativeSurveys.length === 0
               ? 'Example App'
               : 'Native Surveys'}
           </Text>
         </View>
 
-        {this.state.nativeSurveys.length == 0 && (
+        {this.state.nativeSurveys.length === 0 && (
           <ActionList
             onClickShowNativeSurveys={this.onClickShowNativeSurveys}
             onClickShowSurveys={this.onClickShowSurveys}
@@ -193,39 +221,33 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         )}
 
         {this.state.nativeSurveys.length > 0 && (
-       
-              <NativeSurveysList
+          <NativeSurveysList
             nativeSurveys={this.state.nativeSurveys}
             onClickShowNativeSurvey={this.onClickShowNativeSurvey}
           />
-          
         )}
 
-
         <View>
-          <Text style={styles.points}>Total Points: {this.state.points.toString()}</Text>
+          <Text style={styles.points}>
+            Total Points: {this.state.points.toString()}
+          </Text>
         </View>
 
-       
-        <View style={{ alignItems: 'center' }}>
+        <View style={styles.logoContainer}>
           <Image
             style={styles.imageLogo}
             source={require('./assets/Logo.png')}
           />
         </View>
         {this.state.nativeSurveys.length > 0 && (
-       
-       <View>
-       <Button
-         onPress={this.cleanState}
-         title="Close Survey List"
-         color="#841584"
-       />
-       </View>
-     
-   )}
-  
-
+          <View>
+            <Button
+              onPress={this.cleanState}
+              title="Close Survey List"
+              color="#841584"
+            />
+          </View>
+        )}
       </SafeAreaView>
     );
   }
@@ -235,12 +257,10 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
    */
   cleanState = () => {
     this.sumRewards();
-    this.setState({ nativeSurveys: [] });
+    this.setState({nativeSurveys: []});
     return true;
   };
-
 }
-
 
 /**
  * Application state
@@ -250,15 +270,12 @@ type InbBrainAppState = {
   rewards: InBrainReward[];
   nativeSurveys: InBrainNativeSurvey[];
   placementId: string | undefined;
-
 };
 
 /**
  * Application props
  */
 type InbBrainAppProps = {};
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -298,8 +315,8 @@ const styles = StyleSheet.create({
     height: 35,
     marginTop: 30,
     marginLeft: 30,
-   
+  },
+  logoContainer: {
+    alignItems: 'center',
   },
 });
-
-// export default App;
