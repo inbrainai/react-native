@@ -18,9 +18,10 @@ import {
 import inbrain, {
   InBrainNativeSurvey,
   InBrainReward,
-  InitOptions,
   InBrainSurveyFilter,
   InBrainSurveyCategory,
+  StatusBarConfig,
+  NavigationBarConfig,
 } from 'inbrain-surveys';
 
 import {BackHandler} from 'react-native';
@@ -28,7 +29,7 @@ import ActionList from './components/ActionList';
 import NativeSurveysList from './components/NativeSurveysList';
 
 export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
-  public config: InBrainSurveyFilter;
+  public filter: InBrainSurveyFilter;
   constructor(props: InbBrainAppProps) {
     super(props);
     this.state = {
@@ -38,7 +39,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       placementId: undefined,
     };
 
-    this.config = {
+    this.filter = {
       placementId: this.state.placementId,
       categoryIds: [
         InBrainSurveyCategory.Automotive,
@@ -54,38 +55,44 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     const CLIENT_ID = '852dd4b7-1d05-4803-a1e3-037d0fcfe18f';
     const CLIENT_SECRET =
       'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
+    const USER_ID = 'RNSDKTestUser';
 
-    // Init  options
-    const options: InitOptions = {
-      sessionUid: 'newSessionId',
-      userId: 'RNSDKTestUser',
-      title: 'inBrain Surveys',
-      statusBar: {
-        lightStatusBar: true,
-      },
-      navigationBar: {
-        backgroundColor: '#EAAAAA',
-        titleColor: '#222AAA',
-        buttonsColor: '#ABCDEF',
-        hasShadow: false,
-      },
+    //Init sdk (required)
+    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET, USER_ID);
+
+    /***** Optional methods *****/
+
+    //set or change userID (can be set in setInBrain, ot using this method)
+    inbrain.setSessionID('setUserID');
+    // set user session ID
+    inbrain.setSessionID('newSessionId');
+    // set Data options if required,
+    inbrain.setDataOptions({age: '21'});
+
+    /***** UI methods *****/
+
+    // change status bar color, lightStatusBar - works only for IOS, statusBarColor only for android
+    const statusBarConfig: StatusBarConfig = {
+      lightStatusBar: true,
+      statusBarColor: '#EAAAAA',
     };
+    inbrain.setStatusBarConfig(statusBarConfig);
 
-    // Initialise the SDK
-    inbrain
-      .init(CLIENT_ID, CLIENT_SECRET, options)
-      .then(() => {
-        this.printLog('[Init SUCCESS]');
-      })
-      .catch((err: Error) => {
-        this.printLog(`[Init ERROR] => ${err.message || err}`);
-        console.log(err);
-      });
+    //set navigationBar UI settings
+    const navigationBarConfig: NavigationBarConfig = {
+      title: 'inBrain Surveys',
+      backgroundColor: '#EAAAAA',
+      titleColor: '#222AAA',
+      buttonsColor: '#ABCDEF',
+      hasShadow: false,
+    };
+    inbrain.setNavigationBarConfig(navigationBarConfig);
 
+    // add lister
     inbrain.setOnSurveysCloseLister(() => {
-      this.sumRewards();
       this.printLog('[onClose SUCCESS] => ');
-      this.getNativeSurveys(this.config);
+      this.sumRewards();
+      this.getNativeSurveys(this.filter);
     });
 
     // On back button, clean the state to go back to Action list page
@@ -135,7 +142,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   };
 
   onClickShowNativeSurveys = () => {
-    this.getNativeSurveys(this.config);
+    this.getNativeSurveys(this.filter);
   };
 
   /**
@@ -145,6 +152,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     inbrain
       .getNativeSurveys(config)
       .then((nativeSurveys: InBrainNativeSurvey[]) => {
+        this.printLog('[Get Native Surveys SUCCESS]');
         this.setState({nativeSurveys});
       })
       .catch((err: Error) => {
@@ -194,13 +202,13 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         <View style={styles.headerContainer}>
           <Text style={styles.title}>inBrain Surveys</Text>
           <Text style={styles.appSubtitle}>
-            {this.state.nativeSurveys.length == 0
+            {this.state.nativeSurveys.length === 0
               ? 'Example App'
               : 'Native Surveys'}
           </Text>
         </View>
 
-        {this.state.nativeSurveys.length == 0 && (
+        {this.state.nativeSurveys.length === 0 && (
           <ActionList
             onClickShowNativeSurveys={this.onClickShowNativeSurveys}
             onClickShowSurveys={this.onClickShowSurveys}
@@ -220,7 +228,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
           </Text>
         </View>
 
-        <View style={{alignItems: 'center'}}>
+        <View style={styles.logoContainer}>
           <Image
             style={styles.imageLogo}
             source={require('./assets/Logo.png')}
@@ -303,6 +311,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 30,
   },
+  logoContainer: {
+    alignItems: 'center',
+  },
 });
-
-// export default App;

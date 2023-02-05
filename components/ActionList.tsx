@@ -11,14 +11,14 @@ import {
 export default class ActionList extends PureComponent<ActionListProps> {
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.flex}>
         <View style={styles.imageContainer}>
           <Image
             style={styles.imageFloatingLady}
             source={require('../assets/FloatingWoman.png')}
           />
         </View>
-        <View style={{flex: 1}}>
+        <View style={styles.flex}>
           <ActionButton
             text="Open Survey Wall"
             onPress={this.props.onClickShowSurveys}
@@ -39,14 +39,7 @@ export default class ActionList extends PureComponent<ActionListProps> {
 function ActionButton(props: ActionButtonProps) {
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <View
-        style={{
-          flexDirection: 'column',
-          height: 80,
-          marginBottom: 30,
-          marginLeft: 30,
-          marginRight: 30,
-        }}>
+      <View style={styles.actionButtons}>
         <ImageBackground
           source={require('../assets/OrangeButton.png')}
           resizeMode={'stretch'}
@@ -108,5 +101,15 @@ const styles = StyleSheet.create({
   imageFloatingLady: {
     height: 120,
     resizeMode: 'contain',
+  },
+  actionButtons: {
+    flexDirection: 'column',
+    height: 80,
+    marginBottom: 30,
+    marginLeft: 30,
+    marginRight: 30,
+  },
+  flex: {
+    flex: 1,
   },
 });

@@ -11,7 +11,7 @@ import {
 export default class NativeSurveysList extends PureComponent<NativeSurveysListProps> {
   render() {
     return (
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={styles.flex}>
         {this.props.nativeSurveys.map(survey => (
           <NativeSurvey
             key={survey.id}
@@ -38,7 +38,7 @@ function NativeSurvey(props: NativeSurveyProps) {
               style={
                 styles.textSurveyDuration
               }>{`${survey.time} minutes`}</Text>
-            <View style={styles.surveyInfo}>
+            <View>
               <Text
                 style={
                   styles.textSurveyPoints
@@ -142,5 +142,8 @@ const styles = StyleSheet.create({
   },
   surveyIngo: {
     flex: 2,
+  },
+  flex: {
+    flex: 1,
   },
 });
