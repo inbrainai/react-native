@@ -57,28 +57,26 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
     const USER_ID = 'RNSDKTestUser';
 
-    //Init sdk (required)
-    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET, USER_ID);
+    // Init the sdk (required)
+    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET);
 
     /***** Optional methods *****/
 
-    //set or change userID (can be set in setInBrain, ot using this method)
-    inbrain.setSessionID('setUserID');
-    // set user session ID
+    // Set or change userID (can be set in setInBrain, ot using this method)
+    inbrain.setUserID(USER_ID);
+    //Set user session ID
     inbrain.setSessionID('newSessionId');
-    // set Data options if required,
-    inbrain.setDataOptions({age: '21'});
 
-    /***** UI methods *****/
+    /***** UI customization *****/
 
-    // change status bar color, lightStatusBar - works only for IOS, statusBarColor only for android
+    // Customize statusBar.
     const statusBarConfig: StatusBarConfig = {
       lightStatusBar: true,
-      statusBarColor: '#EAAAAA',
+      statusBarColor: '#EAAAAA', // Android only option, have no effect at iOS.
     };
     inbrain.setStatusBarConfig(statusBarConfig);
 
-    //set navigationBar UI settings
+    // Customize navigationBar
     const navigationBarConfig: NavigationBarConfig = {
       title: 'inBrain Surveys',
       backgroundColor: '#EAAAAA',
@@ -88,10 +86,12 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     };
     inbrain.setNavigationBarConfig(navigationBarConfig);
 
-    // add lister
+    // Add lister
     inbrain.setOnSurveysCloseLister(() => {
-      this.printLog('[onClose SUCCESS] => ');
+      this.printLog('[setOnSurveysCloseLister SUCCESS] => ');
       this.sumRewards();
+
+      // Refresh the surveys after some survey taken
       this.getNativeSurveys(this.filter);
     });
 
@@ -124,7 +124,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         const points = result.reduce((sum, reward) => sum + reward.amount, 0);
         this.printLog(`[Get rewards SUCCESS] => Adding points ${points}`);
         this.setState({points});
-        this.confirmReward(result);
+        this.confirmRewards(result);
       })
       .catch((err: Error) => {
         this.printLog(`[Get rewards ERROR] => ${err.message || err}`);
@@ -135,7 +135,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   /**
    * How to call inbrain.confirmReward()
    */
-  confirmReward = (rewards: InBrainReward[]) => {
+  confirmRewards = (rewards: InBrainReward[]) => {
     inbrain.confirmRewards(rewards).then(() => {
       this.printLog('[Confirm rewards SUCCESS]');
     });
@@ -148,9 +148,9 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   /**
    * How to call inbrain.getNativeSurveys()
    */
-  getNativeSurveys = (config: InBrainSurveyFilter) => {
+  getNativeSurveys = (filter: InBrainSurveyFilter) => {
     inbrain
-      .getNativeSurveys(config)
+      .getNativeSurveys(filter)
       .then((nativeSurveys: InBrainNativeSurvey[]) => {
         this.printLog('[Get Native Surveys SUCCESS]');
         this.setState({nativeSurveys});
@@ -162,7 +162,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   };
 
   /**
-   * How to call inbrain.showNativeSurvey(id: string)
+   * How to call inbrain.showNativeSurvey(id: string, searchId: string)
    */
   onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurvey) => {
     inbrain
