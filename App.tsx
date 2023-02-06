@@ -63,7 +63,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     /***** Optional methods *****/
 
     //set or change userID (can be set in setInBrain, ot using this method)
-    inbrain.setSessionID('setUserID');
+    // inbrain.setUserID('setUserID');
+
     // set user session ID
     inbrain.setSessionID('newSessionId');
     // set Data options if required,
