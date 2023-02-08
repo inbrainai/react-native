@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
@@ -18,16 +18,18 @@ import {
 import inbrain, {
   InBrainNativeSurvey,
   InBrainReward,
-  InitOptions,
   InBrainSurveyFilter,
   InBrainSurveyCategory,
+  StatusBarConfig,
+  NavigationBarConfig,
 } from 'inbrain-surveys';
 
-import { BackHandler } from 'react-native';
+import {BackHandler} from 'react-native';
 import ActionList from './components/ActionList';
 import NativeSurveysList from './components/NativeSurveysList';
 
 export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
+  public filter: InBrainSurveyFilter;
   constructor(props: InbBrainAppProps) {
     super(props);
     this.state = {
@@ -36,6 +38,16 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       nativeSurveys: [],
       placementId: undefined,
     };
+
+    this.filter = {
+      placementId: this.state.placementId,
+      categoryIds: [
+        InBrainSurveyCategory.Automotive,
+        InBrainSurveyCategory.Business,
+        InBrainSurveyCategory.SmokingTobacco,
+      ],
+      excludedCategoryIds: [InBrainSurveyCategory.BeveragesAlcoholic],
+    };
   }
 
   componentDidMount = () => {
@@ -43,44 +55,45 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     const CLIENT_ID = '852dd4b7-1d05-4803-a1e3-037d0fcfe18f';
     const CLIENT_SECRET =
       'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
+    const USER_ID = 'RNSDKTestUser';
 
-    // Init  options
-    const options: InitOptions = {
-      sessionUid: 'newSessionId',
-      userId: 'RNSDKTestUser',
-      title: 'inBrain Surveys',
-      statusBar: {
-        lightStatusBar: true,
-      },
-      navigationBar: {
-        backgroundColor: '#EAAAAA',
-        titleColor: '#222AAA',
-        buttonsColor: '#ABCDEF',
-        hasShadow: false,
-      },
+    // Init the sdk (required)
+    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET);
+
+    /***** Optional methods *****/
+
+    // Set or change userID (can be set in setInBrain, ot using this method)
+    inbrain.setUserID(USER_ID);
+    //Set user session ID
+    inbrain.setSessionID('newSessionId');
+
+    /***** UI customization *****/
+
+    // Customize statusBar.
+    const statusBarConfig: StatusBarConfig = {
+      lightStatusBar: true,
+      statusBarColor: '#EAAAAA', // Android only option, have no effect at iOS.
     };
+    inbrain.setStatusBarConfig(statusBarConfig);
 
-    // Initialise the SDK
-    inbrain
-      .init(CLIENT_ID, CLIENT_SECRET, options)
-      .then(() => {
-        this.printLog('[Init SUCCESS]');
-      })
-      .catch((err: Error) => {
-        this.printLog(`[Init ERROR] => ${err.message || err}`);
-        console.log(err);
-      });
+    // Customize navigationBar
+    const navigationBarConfig: NavigationBarConfig = {
+      title: 'inBrain Surveys',
+      backgroundColor: '#EAAAAA',
+      titleColor: '#222AAA',
+      buttonsColor: '#ABCDEF',
+      hasShadow: false,
+    };
+    inbrain.setNavigationBarConfig(navigationBarConfig);
 
-
-    // OnClose listeners
-    inbrain.setOnCloseListener(() => {
+    // Add lister
+    inbrain.setOnSurveysCloseLister(() => {
+      this.printLog('[setOnSurveysCloseLister SUCCESS] => ');
       this.sumRewards();
-      this.printLog('[onClose SUCCESS] => ');
+
+      // Refresh the surveys after some survey taken
+      this.getNativeSurveys(this.filter);
     });
-    inbrain.setOnCloseListenerFromPage(() =>{
-      this.sumRewards();
-      this.printLog('[onCloseFromPage SUCCESS] => ');
-  });
 
     // On back button, clean the state to go back to Action list page
     BackHandler.addEventListener('hardwareBackPress', this.cleanState);
@@ -108,11 +121,10 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     inbrain
       .getRewards()
       .then((result: InBrainReward[]) => {
-
         const points = result.reduce((sum, reward) => sum + reward.amount, 0);
         this.printLog(`[Get rewards SUCCESS] => Adding points ${points}`);
-
-        this.setState({ points });
+        this.setState({points});
+        this.confirmRewards(result);
       })
       .catch((err: Error) => {
         this.printLog(`[Get rewards ERROR] => ${err.message || err}`);
@@ -121,21 +133,27 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   };
 
   /**
+   * How to call inbrain.confirmReward()
+   */
+  confirmRewards = (rewards: InBrainReward[]) => {
+    inbrain.confirmRewards(rewards).then(() => {
+      this.printLog('[Confirm rewards SUCCESS]');
+    });
+  };
+
+  onClickShowNativeSurveys = () => {
+    this.getNativeSurveys(this.filter);
+  };
+
+  /**
    * How to call inbrain.getNativeSurveys()
    */
-  
-  onClickShowNativeSurveys = () => {
-    let config:InBrainSurveyFilter = {
-      placementId: this.state.placementId,
-      categoryIds: [InBrainSurveyCategory.Automotive, InBrainSurveyCategory.Business],
-      excludedCategoryIds: [InBrainSurveyCategory.BeveragesAlcoholic]
-    };
-
-
+  getNativeSurveys = (filter: InBrainSurveyFilter) => {
     inbrain
-      .getNativeSurveys(config)
+      .getNativeSurveys(filter)
       .then((nativeSurveys: InBrainNativeSurvey[]) => {
-        this.setState({ nativeSurveys });
+        this.printLog('[Get Native Surveys SUCCESS]');
+        this.setState({nativeSurveys});
       })
       .catch((err: Error) => {
         this.printLog(`[Get Native Surveys ERROR] => ${err.message || err}`);
@@ -144,7 +162,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   };
 
   /**
-   * How to call inbrain.showNativeSurvey(id: string)
+   * How to call inbrain.showNativeSurvey(id: string, searchId: string)
    */
   onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurvey) => {
     inbrain
@@ -184,13 +202,13 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         <View style={styles.headerContainer}>
           <Text style={styles.title}>inBrain Surveys</Text>
           <Text style={styles.appSubtitle}>
-            {this.state.nativeSurveys.length == 0
+            {this.state.nativeSurveys.length === 0
               ? 'Example App'
               : 'Native Surveys'}
           </Text>
         </View>
 
-        {this.state.nativeSurveys.length == 0 && (
+        {this.state.nativeSurveys.length === 0 && (
           <ActionList
             onClickShowNativeSurveys={this.onClickShowNativeSurveys}
             onClickShowSurveys={this.onClickShowSurveys}
@@ -198,39 +216,33 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         )}
 
         {this.state.nativeSurveys.length > 0 && (
-       
-              <NativeSurveysList
+          <NativeSurveysList
             nativeSurveys={this.state.nativeSurveys}
             onClickShowNativeSurvey={this.onClickShowNativeSurvey}
           />
-          
         )}
 
-
         <View>
-          <Text style={styles.points}>Total Points: {this.state.points.toString()}</Text>
+          <Text style={styles.points}>
+            Total Points: {this.state.points.toString()}
+          </Text>
         </View>
 
-       
-        <View style={{ alignItems: 'center' }}>
+        <View style={styles.logoContainer}>
           <Image
             style={styles.imageLogo}
             source={require('./assets/Logo.png')}
           />
         </View>
         {this.state.nativeSurveys.length > 0 && (
-       
-       <View>
-       <Button
-         onPress={this.cleanState}
-         title="Close Survey List"
-         color="#841584"
-       />
-       </View>
-     
-   )}
-  
-
+          <View>
+            <Button
+              onPress={this.cleanState}
+              title="Close Survey List"
+              color="#841584"
+            />
+          </View>
+        )}
       </SafeAreaView>
     );
   }
@@ -240,12 +252,10 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
    */
   cleanState = () => {
     this.sumRewards();
-    this.setState({ nativeSurveys: [] });
+    this.setState({nativeSurveys: []});
     return true;
   };
-
 }
-
 
 /**
  * Application state
@@ -255,15 +265,12 @@ type InbBrainAppState = {
   rewards: InBrainReward[];
   nativeSurveys: InBrainNativeSurvey[];
   placementId: string | undefined;
-
 };
 
 /**
  * Application props
  */
 type InbBrainAppProps = {};
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -303,8 +310,8 @@ const styles = StyleSheet.create({
     height: 35,
     marginTop: 30,
     marginLeft: 30,
-   
+  },
+  logoContainer: {
+    alignItems: 'center',
   },
 });
-
-// export default App;

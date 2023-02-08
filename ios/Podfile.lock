@@ -73,10 +73,10 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - inbrain-surveys (2.5.0):
-    - InBrainSurveys (~> 2.1.0)
+  - inbrain-surveys (2.9.0):
+    - InBrainSurveys (~> 2.2.0)
     - React
-  - InBrainSurveys (2.1.0)
+  - InBrainSurveys (2.2.0)
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
@@ -522,8 +522,8 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  inbrain-surveys: 8e0a40ec7b2d92d9bb3e3122a4f26969934e6fb6
-  InBrainSurveys: 2541306dcd5e7a9937277a8699ee231d490b510b
+  inbrain-surveys: c48375e24051179daa79362df1e4b75b97389623
+  InBrainSurveys: 9663a6de692401900172e0a701d49aa7ddbffc44
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 0080d0a6ebf2577475bda044aa59e2ca1f909cda
@@ -556,6 +556,6 @@ SPEC CHECKSUMS:
   Yoga: 1f02ef4ce4469aefc36167138441b27d988282b1
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: ea0adc39ebc6d4a0b55428985a8a4cc21087414c
+PODFILE CHECKSUM: a07e2f6427d0dc4b7e8c3886b19786479d25a939
 
 COCOAPODS: 1.11.3

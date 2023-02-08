@@ -19,13 +19,9 @@ Simply run:
 ## To run the app:
 
 ### iOS
-Go to the `ios/` folder and run `pod install`. Then, open the `ios` folder in XCode.
+Go to the `ios/` folder and run `pod install`. Then, open the `/ios/InbrainReactNativeExample.xcworkspace` folder in XCode.
 
-Set the framework 'Target Membership' to `inbrain-surveys` as below:
-
-![Framework Target Membership](https://i.ibb.co/N2ntq0P/target-membership.png)
-
-Run the application from XCode or from the command line using `npm run android`
+Run the application from XCode or from the command line using `npm run ios`
 
 ### Android
 Simply run:
