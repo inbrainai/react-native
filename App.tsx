@@ -78,7 +78,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 
     // Customize navigationBar
     const navigationBarConfig: NavigationBarConfig = {
-      title: 'inBrain Surveys',
+      title: 'inBrain.ai Surveys',
       backgroundColor: '#EAAAAA',
       titleColor: '#222AAA',
       buttonsColor: '#ABCDEF',
