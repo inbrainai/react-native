@@ -52,7 +52,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
 
   componentDidMount = () => {
     // To test with your account, replace the credentials below
-    const CLIENT_ID = '35c6e720-4f76-4d25-9e18-e718678e27ae';
+    // const CLIENT_ID = '35c6e720-4f76-4d25-9e18-e718678e27ae';
+    const CLIENT_ID = '852dd4b7-1d05-4803-a1e3-037d0fcfe18f';
     const CLIENT_SECRET =
       'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
     const USER_ID = 'RNSDKTestUser';
