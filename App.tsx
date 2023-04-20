@@ -51,38 +51,34 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   }
 
   componentDidMount = () => {
-    // To test with your account, replace the credentials below
-    // const CLIENT_ID = '35c6e720-4f76-4d25-9e18-e718678e27ae';
+    // To test with your account, replace the credentials belowc3630a51ae79405662146581066b387f550ea6de
     const CLIENT_ID = '852dd4b7-1d05-4803-a1e3-037d0fcfe18f';
     const CLIENT_SECRET =
       'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
     const USER_ID = 'RNSDKTestUser';
 
-    //Init sdk (required)
-    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET, USER_ID);
+    // Init the sdk (required)
+    inbrain.setInBrain(CLIENT_ID, CLIENT_SECRET);
 
     /***** Optional methods *****/
 
-    //set or change userID (can be set in setInBrain, ot using this method)
-    // inbrain.setUserID('setUserID');
-
-    // set user session ID
+    // Set or change userID (can be set in setInBrain, ot using this method)
+    inbrain.setUserID(USER_ID);
+    //Set user session ID
     inbrain.setSessionID('newSessionId');
-    // set Data options if required,
-    inbrain.setDataOptions({age: '21'});
 
-    /***** UI methods *****/
+    /***** UI customization *****/
 
-    // change status bar color, lightStatusBar - works only for IOS, statusBarColor only for android
+    // Customize statusBar.
     const statusBarConfig: StatusBarConfig = {
       lightStatusBar: true,
-      statusBarColor: '#EAAAAA',
+      statusBarColor: '#EAAAAA', // Android only option, have no effect at iOS.
     };
     inbrain.setStatusBarConfig(statusBarConfig);
 
-    //set navigationBar UI settings
+    // Customize navigationBar
     const navigationBarConfig: NavigationBarConfig = {
-      title: 'inBrain Surveys',
+      title: 'inBrain.ai Surveys',
       backgroundColor: '#EAAAAA',
       titleColor: '#222AAA',
       buttonsColor: '#ABCDEF',
@@ -90,10 +86,12 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     };
     inbrain.setNavigationBarConfig(navigationBarConfig);
 
-    // add lister
+    // Add lister
     inbrain.setOnSurveysCloseLister(() => {
-      this.printLog('[onClose SUCCESS] => ');
+      this.printLog('[setOnSurveysCloseLister SUCCESS] => ');
       this.sumRewards();
+
+      // Refresh the surveys after some survey taken
       this.getNativeSurveys(this.filter);
     });
 
@@ -126,7 +124,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         const points = result.reduce((sum, reward) => sum + reward.amount, 0);
         this.printLog(`[Get rewards SUCCESS] => Adding points ${points}`);
         this.setState({points});
-        this.confirmReward(result);
+        this.confirmRewards(result);
       })
       .catch((err: Error) => {
         this.printLog(`[Get rewards ERROR] => ${err.message || err}`);
@@ -137,7 +135,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   /**
    * How to call inbrain.confirmReward()
    */
-  confirmReward = (rewards: InBrainReward[]) => {
+  confirmRewards = (rewards: InBrainReward[]) => {
     inbrain.confirmRewards(rewards).then(() => {
       this.printLog('[Confirm rewards SUCCESS]');
     });
@@ -150,9 +148,9 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   /**
    * How to call inbrain.getNativeSurveys()
    */
-  getNativeSurveys = (config: InBrainSurveyFilter) => {
+  getNativeSurveys = (filter: InBrainSurveyFilter) => {
     inbrain
-      .getNativeSurveys(config)
+      .getNativeSurveys(filter)
       .then((nativeSurveys: InBrainNativeSurvey[]) => {
         this.printLog('[Get Native Surveys SUCCESS]');
         this.setState({nativeSurveys});
@@ -164,7 +162,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   };
 
   /**
-   * How to call inbrain.showNativeSurvey(id: string)
+   * How to call inbrain.showNativeSurvey(id: string, searchId: string)
    */
   onClickShowNativeSurvey = (nativeSurvey: InBrainNativeSurvey) => {
     inbrain
