@@ -10,8 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "base-64": "^1.0.0",
-    "inbrain-surveys": "2.8.0",
+    "inbrain-surveys": "2.10.0",
     "react": "18.1.0",
     "react-native": "0.70.4"
   },

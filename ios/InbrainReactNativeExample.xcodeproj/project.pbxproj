@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* InbrainReactNativeExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* InbrainReactNativeExampleTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-InbrainReactNativeExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-InbrainReactNativeExample.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a */; };
+		7D77578085A75C20FFCB00FB /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B51F8BFF732EF17846106639 /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		AB178B0C4C2E938B9043E3AD /* libPods-InbrainReactNativeExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5306950694C5E26E60CB386 /* libPods-InbrainReactNativeExample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,15 +36,15 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = InbrainReactNativeExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = InbrainReactNativeExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = InbrainReactNativeExample/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-InbrainReactNativeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InbrainReactNativeExample.debug.xcconfig"; path = "Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-InbrainReactNativeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InbrainReactNativeExample.release.xcconfig"; path = "Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-InbrainReactNativeExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InbrainReactNativeExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = InbrainReactNativeExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig"; path = "Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		A5306950694C5E26E60CB386 /* libPods-InbrainReactNativeExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InbrainReactNativeExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B51F8BFF732EF17846106639 /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D555FAD89C229FFF2D498551 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D72B1012291F7A8A0020499B /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D76D549628F9F6F7005AB861 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
+		D96F84D89DF1EA9F4FE25B10 /* Pods-InbrainReactNativeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InbrainReactNativeExample.debug.xcconfig"; path = "Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample.debug.xcconfig"; sourceTree = "<group>"; };
+		E2F3732DA3CE72D4972D7016 /* Pods-InbrainReactNativeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InbrainReactNativeExample.release.xcconfig"; path = "Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample.release.xcconfig"; sourceTree = "<group>"; };
+		E36592FF6279DB183D081E00 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig"; path = "Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a in Frameworks */,
+				7D77578085A75C20FFCB00FB /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-InbrainReactNativeExample.a in Frameworks */,
+				AB178B0C4C2E938B9043E3AD /* libPods-InbrainReactNativeExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,8 +104,8 @@
 				D72B1012291F7A8A0020499B /* libReact-Core.a */,
 				D76D549628F9F6F7005AB861 /* hermes.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-InbrainReactNativeExample.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a */,
+				A5306950694C5E26E60CB386 /* libPods-InbrainReactNativeExample.a */,
+				B51F8BFF732EF17846106639 /* libPods-InbrainReactNativeExample-InbrainReactNativeExampleTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -144,10 +144,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-InbrainReactNativeExample.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-InbrainReactNativeExample.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig */,
+				D96F84D89DF1EA9F4FE25B10 /* Pods-InbrainReactNativeExample.debug.xcconfig */,
+				E2F3732DA3CE72D4972D7016 /* Pods-InbrainReactNativeExample.release.xcconfig */,
+				D555FAD89C229FFF2D498551 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig */,
+				E36592FF6279DB183D081E00 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -159,12 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "InbrainReactNativeExampleTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				4534042F04828C6491367D1A /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				991815649A9B6B6D0A38882E /* [CP] Embed Pods Frameworks */,
+				04F8BA5C5D26C9B6C686650E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -180,14 +180,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "InbrainReactNativeExample" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				AE7CF2AE08BDE98B91943994 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				A5E6FDAB867768E816777E9B /* [CP] Embed Pods Frameworks */,
+				DDCBDEE3CB1708137EDC2289 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -270,24 +270,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		04F8BA5C5D26C9B6C686650E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+		4534042F04828C6491367D1A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -309,7 +309,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		991815649A9B6B6D0A38882E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5E6FDAB867768E816777E9B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE7CF2AE08BDE98B91943994 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -331,24 +365,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+		DDCBDEE3CB1708137EDC2289 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -363,23 +380,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample/Pods-InbrainReactNativeExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests/Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -434,7 +434,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig */;
+			baseConfigurationReference = D555FAD89C229FFF2D498551 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -461,7 +461,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig */;
+			baseConfigurationReference = E36592FF6279DB183D081E00 /* Pods-InbrainReactNativeExample-InbrainReactNativeExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -485,7 +485,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-InbrainReactNativeExample.debug.xcconfig */;
+			baseConfigurationReference = D96F84D89DF1EA9F4FE25B10 /* Pods-InbrainReactNativeExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -511,7 +511,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-InbrainReactNativeExample.release.xcconfig */;
+			baseConfigurationReference = E2F3732DA3CE72D4972D7016 /* Pods-InbrainReactNativeExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
