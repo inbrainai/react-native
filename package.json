@@ -10,9 +10,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "inbrain-surveys": "2.10.0",
-    "react": "18.1.0",
-    "react-native": "0.70.4"
+    "inbrain-surveys": "2.11.1",
+    "react": "18.2.0",
+    "react-native": "0.71.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
