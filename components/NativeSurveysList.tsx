@@ -1,4 +1,4 @@
-import {InBrainNativeSurvey, Category} from 'inbrain-surveys';
+import {InBrainNativeSurvey} from 'inbrain-surveys';
 import React, {PureComponent} from 'react';
 import {
   StyleSheet,
@@ -8,16 +8,34 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import Points from './common/Points';
+import Rank from './common/Rank';
+import Time from './common/Time';
+
+import {mScale} from './utils/metrics';
+
 export default class NativeSurveysList extends PureComponent<NativeSurveysListProps> {
   render() {
+    if (this.props.nativeSurveys.length === 0) {
+      return (
+        <View style={styles.noSurveysContainer}>
+          {!this.props.isLoading && (
+            <Text>No Surveys available at the moment</Text>
+          )}
+        </View>
+      );
+    }
+
     return (
-      <ScrollView style={styles.flex}>
+      <ScrollView contentContainerStyle={styles.flex} style={styles.flex}>
         {this.props.nativeSurveys.map(survey => (
-          <NativeSurvey
-            key={survey.id}
-            survey={survey}
-            onPress={this.props.onClickShowNativeSurvey}
-          />
+          <View key={survey.id} style={styles.surveysGrid}>
+            <NativeSurvey
+              key={survey.id}
+              survey={survey}
+              onPress={this.props.onClickShowNativeSurvey}
+            />
+          </View>
         ))}
       </ScrollView>
     );
@@ -30,50 +48,43 @@ export default class NativeSurveysList extends PureComponent<NativeSurveysListPr
 function NativeSurvey(props: NativeSurveyProps) {
   const survey = props.survey;
   return (
-    <TouchableOpacity onPress={() => props.onPress(survey)}>
-      <View style={styles.surveyView}>
-        <View style={[styles.card, styles.shadow]}>
-          <View style={styles.textSurvey}>
-            <Text
-              style={
-                styles.textSurveyDuration
-              }>{`${survey.time} minutes`}</Text>
-            <View>
+    <View style={styles.surveyView}>
+      <View style={[styles.card, styles.shadow]}>
+        <View style={styles.surveyBox}>
+          <View style={styles.textSurveyPoints}>
+            <Points
+              points={survey.value}
+              multiplier={survey.multiplier}
+              currencySale={survey.currencySale}
+            />
+          </View>
+          <View style={styles.rankAndTime}>
+            <Rank rank={survey.rank} />
+            <Time time={survey.time} />
+          </View>
+          <View style={styles.surveyCategoryBox}>
+            {survey.namedCategories && (
+              <Text style={styles.surveyCategory}>
+                {survey.namedCategories[0].name}
+              </Text>
+            )}
+          </View>
+          <View style={styles.surveyActionBox}>
+            <TouchableOpacity
+              style={styles.takeSurveyBtn}
+              onPress={() => props.onPress(survey)}>
               <Text
-                style={
-                  styles.textSurveyPoints
-                }>{`${survey.value} points`}</Text>
-              <Text
-                style={
-                  styles.textSurveyData
-                }>{`Currency sale: ${survey.currencySale}`}</Text>
-              <Text
-                style={
-                  styles.textSurveyData
-                }>{`Multipler: ${survey.multiplier}`}</Text>
-              <Text
-                style={
-                  styles.textSurveyData
-                }>{`Conversion: ${survey.conversionLevel.name}`}</Text>
-              {survey.namedCategories && (
-                <MapCategories categories={survey.namedCategories} />
-              )}
-            </View>
+                adjustsFontSizeToFit
+                allowFontScaling
+                numberOfLines={1}
+                style={styles.takeSurveyBtnText}>
+                Start Survey
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
-    </TouchableOpacity>
-  );
-}
-
-function MapCategories(props: NativeSurveyCategoriesProps) {
-  let categoriesList = props.categories
-    .map(category => category.name)
-    .join(', ');
-  return (
-    <Text
-      numberOfLines={2}
-      style={styles.textSurveyData}>{`Categories: ${categoriesList}`}</Text>
+    </View>
   );
 }
 
@@ -82,15 +93,12 @@ type NativeSurveyProps = {
   onPress: (survey: InBrainNativeSurvey) => void;
 };
 
-type NativeSurveyCategoriesProps = {
-  categories: Category[];
-};
-
 /**
  * Component props
  */
 type NativeSurveysListProps = {
   nativeSurveys: InBrainNativeSurvey[];
+  isLoading: boolean;
   onClickShowNativeSurvey: (survey: InBrainNativeSurvey) => void;
 };
 
@@ -99,51 +107,83 @@ type NativeSurveysListProps = {
  */
 const styles = StyleSheet.create({
   surveyView: {
-    height: 100,
+    height: 180,
     flexDirection: 'column',
+    paddingTop: mScale(10),
+    paddingHorizontal: mScale(10),
+    width: '100%',
   },
-  textSurvey: {
-    flexDirection: 'row',
-    height: '100%',
+  surveysGrid: {
+    flexBasis: '50%',
     alignItems: 'center',
   },
-  textSurveyDuration: {
-    textAlign: 'left',
-    flex: 1,
-    fontWeight: 'bold',
-  },
-  textSurveyPoints: {
-    textAlign: 'right',
-    fontWeight: 'bold',
-    color: '#47a3dc',
-  },
-  textSurveyData: {
-    textAlign: 'right',
-    fontSize: 7,
+  surveyBox: {
+    alignItems: 'center',
+    height: '100%',
+    paddingTop: mScale(20),
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     borderRadius: 10,
-    width: '90%',
+    padding: mScale(10),
+    width: '100%',
     alignSelf: 'center',
-    marginTop: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
   },
   shadow: {
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 1,
     },
     shadowOpacity: 0.34,
-    shadowRadius: 6.27,
+    shadowRadius: 0.2,
     elevation: 10,
-  },
-  surveyIngo: {
-    flex: 2,
   },
   flex: {
     flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    backgroundColor: '#eeeeee',
+  },
+  noSurveysContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textSurveyPoints: {
+    flex: 1.2,
+  },
+  surveyCategoryBox: {
+    flex: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  surveyCategory: {
+    color: '#47a3dc',
+    fontSize: 15,
+    fontWeight: '400',
+  },
+  rankAndTime: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  surveyActionBox: {
+    flex: 3,
+    width: '90%',
+    justifyContent: 'center',
+  },
+  takeSurveyBtn: {
+    padding: mScale(6),
+    width: '100%',
+    // maxWidth: 150,
+    borderRadius: 20,
+    backgroundColor: '#02a4ed',
+    textAlign: 'center',
+  },
+  takeSurveyBtnText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    alignSelf: 'center',
   },
 });

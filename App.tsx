@@ -13,6 +13,8 @@ import {
   SafeAreaView,
   Image,
   Button,
+  BackHandler,
+  ActivityIndicator,
 } from 'react-native';
 
 import inbrain, {
@@ -24,7 +26,6 @@ import inbrain, {
   NavigationBarConfig,
 } from 'inbrain-surveys';
 
-import {BackHandler} from 'react-native';
 import ActionList from './components/ActionList';
 import NativeSurveysList from './components/NativeSurveysList';
 
@@ -37,6 +38,9 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       points: 0,
       nativeSurveys: [],
       placementId: undefined,
+      showNativeWall: false,
+      isLoading: false,
+      error: '',
     };
 
     this.filter = {
@@ -91,8 +95,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
       this.printLog('[setOnSurveysCloseLister SUCCESS] => ');
       this.sumRewards();
 
-      // Refresh the surveys after some survey taken
-      this.getNativeSurveys(this.filter);
+      // Refresh the surveys if survey wall is open and some survey already taken,
+      this.state.showNativeWall && this.getNativeSurveysRoutine();
     });
 
     // On back button, clean the state to go back to Action list page
@@ -121,7 +125,8 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
     inbrain
       .getRewards()
       .then((result: InBrainReward[]) => {
-        const points = result.reduce((sum, reward) => sum + reward.amount, 0);
+        const rewSum = result.reduce((sum, reward) => sum + reward.amount, 0);
+        const points = this.state.points + rewSum;
         this.printLog(`[Get rewards SUCCESS] => Adding points ${points}`);
         this.setState({points});
         this.confirmRewards(result);
@@ -142,18 +147,21 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   };
 
   onClickShowNativeSurveys = () => {
-    this.getNativeSurveys(this.filter);
+    this.getNativeSurveysRoutine();
+    this.setState({showNativeWall: true});
   };
 
   /**
    * How to call inbrain.getNativeSurveys()
    */
   getNativeSurveys = (filter: InBrainSurveyFilter) => {
+    this.setState({isLoading: true});
+
     inbrain
       .getNativeSurveys(filter)
       .then((nativeSurveys: InBrainNativeSurvey[]) => {
         this.printLog('[Get Native Surveys SUCCESS]');
-        this.setState({nativeSurveys});
+        this.setState({nativeSurveys, isLoading: false});
       })
       .catch((err: Error) => {
         this.printLog(`[Get Native Surveys ERROR] => ${err.message || err}`);
@@ -189,12 +197,24 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         this.printLog(
           `[Check Surveys Available ERROR] => ${err.message || err}`,
         );
-        console.log(err);
       });
   };
 
   // Convenient methods for logging
   printLog = (log: String) => console.log(log);
+
+  getNativeSurveysRoutine = () => {
+    inbrain
+      .checkSurveysAvailable()
+      .then((available: boolean) => {
+        available && this.getNativeSurveys(this.filter);
+      })
+      .catch((err: Error) => {
+        this.printLog(
+          `[Check Surveys Available ERROR] => ${err.message || err}`,
+        );
+      });
+  };
 
   render() {
     return (
@@ -202,47 +222,51 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
         <View style={styles.headerContainer}>
           <Text style={styles.title}>inBrain Surveys</Text>
           <Text style={styles.appSubtitle}>
-            {this.state.nativeSurveys.length === 0
-              ? 'Example App'
-              : 'Native Surveys'}
+            {this.state.showNativeWall ? 'Example App' : 'Native Surveys'}
           </Text>
         </View>
 
-        {this.state.nativeSurveys.length === 0 && (
+        {this.state.isLoading && (
+          <View style={[styles.activityContainer]}>
+            <ActivityIndicator />
+          </View>
+        )}
+
+        {!this.state.showNativeWall && (
           <ActionList
             onClickShowNativeSurveys={this.onClickShowNativeSurveys}
             onClickShowSurveys={this.onClickShowSurveys}
           />
         )}
 
-        {this.state.nativeSurveys.length > 0 && (
+        {this.state.showNativeWall && (
           <NativeSurveysList
+            isLoading={this.state.isLoading}
             nativeSurveys={this.state.nativeSurveys}
             onClickShowNativeSurvey={this.onClickShowNativeSurvey}
           />
         )}
 
-        <View>
+        <View style={styles.footer}>
           <Text style={styles.points}>
             Total Points: {this.state.points.toString()}
           </Text>
-        </View>
-
-        <View style={styles.logoContainer}>
-          <Image
-            style={styles.imageLogo}
-            source={require('./assets/Logo.png')}
-          />
-        </View>
-        {this.state.nativeSurveys.length > 0 && (
-          <View>
-            <Button
-              onPress={this.cleanState}
-              title="Close Survey List"
-              color="#841584"
+          <View style={styles.logoContainer}>
+            <Image
+              style={styles.imageLogo}
+              source={require('./assets/Logo.png')}
             />
           </View>
-        )}
+          {this.state.nativeSurveys.length > 0 && (
+            <View>
+              <Button
+                onPress={this.cleanState}
+                title="Close Survey List"
+                color="#841584"
+              />
+            </View>
+          )}
+        </View>
       </SafeAreaView>
     );
   }
@@ -252,7 +276,7 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
    */
   cleanState = () => {
     this.sumRewards();
-    this.setState({nativeSurveys: []});
+    this.setState({...this.state, showNativeWall: false, nativeSurveys: []});
     return true;
   };
 }
@@ -261,10 +285,13 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
  * Application state
  */
 type InbBrainAppState = {
-  points: Number;
+  points: number;
   rewards: InBrainReward[];
   nativeSurveys: InBrainNativeSurvey[];
   placementId: string | undefined;
+  showNativeWall: boolean;
+  isLoading: boolean;
+  error: string;
 };
 
 /**
@@ -275,7 +302,7 @@ type InbBrainAppProps = {};
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    margin: 10,
+    // margin: 10,
     flex: 1,
   },
   headerContainer: {
@@ -293,16 +320,16 @@ const styles = StyleSheet.create({
     color: 'grey',
   },
   points: {
-    fontSize: 23,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginTop: 25,
-    color: '#0370BE',
+    marginTop: 10,
+    color: '#47a3dc',
     textAlign: 'center',
   },
   imageLogo: {
     width: 220,
     height: 35,
-    marginTop: 30,
+    marginTop: 20,
     resizeMode: 'contain',
   },
   closeButton: {
@@ -313,5 +340,18 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
+  },
+  footer: {
+    flex: 0.2,
+  },
+  activityContainer: {
+    // flex: 5,
+    // backgroundColor: '#fff',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    position: 'absolute',
+    zIndex: 99,
+    elevation: 99,
   },
 });

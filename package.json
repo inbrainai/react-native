@@ -10,7 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "inbrain-surveys": "2.11.1",
+    "inbrain-surveys": "file:../sdk-react/inbrain-surveys-2.11.2.tgz",
     "react": "18.2.0",
     "react-native": "0.71.7"
   },

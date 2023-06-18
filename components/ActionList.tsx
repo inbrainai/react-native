@@ -11,7 +11,7 @@ import {
 export default class ActionList extends PureComponent<ActionListProps> {
   render() {
     return (
-      <View style={styles.flex}>
+      <View style={styles.actionContainer}>
         <View style={styles.imageContainer}>
           <Image
             style={styles.imageFloatingLady}
@@ -111,5 +111,9 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
+  },
+  actionContainer: {
+    flex: 1,
+    marginHorizontal: 10,
   },
 });
