@@ -219,12 +219,14 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.title}>inBrain Surveys</Text>
-          <Text style={styles.appSubtitle}>
-            {this.state.showNativeWall ? 'Example App' : 'Native Surveys'}
-          </Text>
-        </View>
+        {!this.state.showNativeWall && (
+          <View style={styles.headerContainer}>
+            <Text style={styles.title}>inBrain Surveys</Text>
+            <Text style={styles.appSubtitle}>
+              {this.state.showNativeWall ? 'Example App' : 'Native Surveys'}
+            </Text>
+          </View>
+        )}
 
         {this.state.isLoading && (
           <View style={[styles.activityContainer]}>
@@ -247,26 +249,28 @@ export default class App extends Component<InbBrainAppProps, InbBrainAppState> {
           />
         )}
 
-        <View style={styles.footer}>
-          <Text style={styles.points}>
-            Total Points: {this.state.points.toString()}
-          </Text>
-          <View style={styles.logoContainer}>
-            <Image
-              style={styles.imageLogo}
-              source={require('./assets/Logo.png')}
-            />
-          </View>
-          {this.state.nativeSurveys.length > 0 && (
-            <View>
-              <Button
-                onPress={this.cleanState}
-                title="Close Survey List"
-                color="#841584"
+        {!this.state.showNativeWall && (
+          <View style={styles.footer}>
+            <Text style={styles.points}>
+              Total Points: {this.state.points.toString()}
+            </Text>
+            <View style={styles.logoContainer}>
+              <Image
+                style={styles.imageLogo}
+                source={require('./assets/Logo.png')}
               />
             </View>
-          )}
-        </View>
+            {this.state.nativeSurveys.length > 0 && (
+              <View>
+                <Button
+                  onPress={this.cleanState}
+                  title="Close Survey List"
+                  color="#841584"
+                />
+              </View>
+            )}
+          </View>
+        )}
       </SafeAreaView>
     );
   }
