@@ -27,17 +27,22 @@ export default class NativeSurveysList extends PureComponent<NativeSurveysListPr
     }
 
     return (
-      <ScrollView contentContainerStyle={styles.flex} style={styles.flex}>
-        {this.props.nativeSurveys.map(survey => (
-          <View key={survey.id} style={styles.surveysGrid}>
-            <NativeSurvey
-              key={survey.id}
-              survey={survey}
-              onPress={this.props.onClickShowNativeSurvey}
-            />
-          </View>
-        ))}
-      </ScrollView>
+      <>
+        <View style={styles.headerContainer}>
+          <Text style={styles.title}>Native Surveys</Text>
+        </View>
+        <ScrollView contentContainerStyle={styles.flex} style={styles.flex}>
+          {this.props.nativeSurveys.map(survey => (
+            <View key={survey.id} style={styles.surveysGrid}>
+              <NativeSurvey
+                key={survey.id}
+                survey={survey}
+                onPress={this.props.onClickShowNativeSurvey}
+              />
+            </View>
+          ))}
+        </ScrollView>
+      </>
     );
   }
 }
@@ -185,5 +190,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     alignSelf: 'center',
+  },
+  headerContainer: {
+    height: 110,
+    // flex: 1,
+    backgroundColor: 'green',
+    justifyContent: 'center',
+  },
+  title: {
+    marginTop: 30,
+    fontSize: 22,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#fff',
   },
 });
