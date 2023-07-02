@@ -1,39 +1,25 @@
 import React from 'react';
-import Main from './Main';
+import Home from './Home';
 import NativeSurveys from './NativeSurveys';
 
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Home: undefined;
+  NativeSurveys: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigator = () => {
   const baseOptions = () => {
     return {
       headerTitle: '',
       headerBackVisible: false,
+      headerShown: false,
     };
   };
-
-  // const options = ({navigation}) => {
-  //   return {
-  //     headerTitle: '',
-  //     headerBackVisible: false,
-  //     headerRight: () => (
-  //       <HomeBtn onPress={() => navigation.navigate('Home')} />
-  //     ),
-  //   };
-  // };
-
-  // const backBtnOptions = ({navigation}) => {
-  //   return {
-  //     headerTitle: '',
-  //     headerLeft: () => <BackBtn onPress={() => navigation.goBack()} />,
-  //     headerRight: () => (
-  //       <HomeBtn onPress={() => navigation.navigate('Home')} />
-  //     ),
-  //   };
-  // };
 
   const navTheme = {
     ...DefaultTheme,
@@ -47,12 +33,18 @@ const Navigator = () => {
     <NavigationContainer theme={navTheme}>
       <Stack.Navigator
         screenOptions={{
-          // headerShown: false,
-          headerBackTitleVisible: false,
-          headerTransparent: true,
+          headerTransparent: false,
           gestureEnabled: false,
         }}>
-        <Stack.Screen name="Main" component={Main} options={baseOptions} />
+        <Stack.Screen name="Home" component={Home} options={baseOptions} />
+        <Stack.Screen
+          name="NativeSurveys"
+          component={NativeSurveys}
+          options={{
+            headerTitle: 'Native Surveys',
+            headerBackVisible: true,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
