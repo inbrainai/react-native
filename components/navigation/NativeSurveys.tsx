@@ -25,7 +25,7 @@ const NativeSurveysList = () => {
     InBrainNativeSurvey[]
   >([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isAvailable, setIsAvailable] = useState<boolean>();
+  const [unAvailable, setUnAvailable] = useState<boolean>(false);
 
   const filter = {
     placementId: undefined,
@@ -85,7 +85,7 @@ const NativeSurveysList = () => {
       ?.checkSurveysAvailable()
       .then((available: boolean) => {
         available && getNativeSurveys();
-        setIsAvailable(available);
+        setUnAvailable(!available);
       })
       .catch((err: Error) => {
         console.log(`[Check Surveys Available ERROR] => ${err.message || err}`);
@@ -128,7 +128,7 @@ const NativeSurveysList = () => {
           <ActivityIndicator />
         </View>
       )}
-      {!isAvailable && (
+      {unAvailable && (
         <View style={[styles.activityContainer]}>
           <Text>no surveys available at the moment</Text>
         </View>
