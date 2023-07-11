@@ -130,7 +130,7 @@ const NativeSurveysList = () => {
       )}
       {unAvailable && (
         <View style={[styles.activityContainer]}>
-          <Text>no surveys available at the moment</Text>
+          <Text>No surveys available at the moment</Text>
         </View>
       )}
       <ScrollView contentContainerStyle={styles.flex} style={styles.flex}>

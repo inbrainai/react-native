@@ -10,7 +10,7 @@ const App = () => {
   // value={{ authenticated, setAuthenticated }}
 
   useEffect(() => {
-    // To test with your account, replace the credentials belowc3630a51ae79405662146581066b387f550ea6de
+    // To test with Your account - replace the credentials below
     const CLIENT_ID = '852dd4b7-1d05-4803-a1e3-037d0fcfe18f';
     const CLIENT_SECRET =
       'nd7Urn+w0vgjdgOYu2k751mQp7p8tCuFWHrDZZzmIK6cXNXKLHacaU6zPeMu8Eql62ijn/m+guTybj0bCspkdA==';
@@ -21,7 +21,7 @@ const App = () => {
 
     /***** Optional methods *****/
 
-    // Set or change userID (can be set in setInBrain, ot using this method)
+    // Set or change userID (can be set in setInBrain, or using this method)
     inbrain.setUserID(USER_ID);
     //Set user session ID
     inbrain.setSessionID('newSessionId');

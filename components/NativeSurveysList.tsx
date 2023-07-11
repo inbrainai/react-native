@@ -48,7 +48,7 @@ export default class NativeSurveysList extends PureComponent<NativeSurveysListPr
 }
 
 /**
- * Button in the action lise
+ * Button in the action list
  */
 function NativeSurvey(props: NativeSurveyProps) {
   const survey = props.survey;
@@ -180,7 +180,6 @@ const styles = StyleSheet.create({
   takeSurveyBtn: {
     padding: mScale(6),
     width: '100%',
-    // maxWidth: 150,
     borderRadius: 20,
     backgroundColor: '#02a4ed',
     textAlign: 'center',
@@ -193,7 +192,6 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     height: 110,
-    // flex: 1,
     backgroundColor: 'green',
     justifyContent: 'center',
   },

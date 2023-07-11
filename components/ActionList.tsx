@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
-    // justifyContent: 'space-around',
     justifyContent: 'center',
   },
   actionContainer: {
