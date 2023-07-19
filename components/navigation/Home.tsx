@@ -1,22 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {NavigationProp} from '@react-navigation/native';
 import ActionList from '../ActionList';
 import {useInbrain} from '../context/inbrainContext';
-// import {useReward} from '../context/RewardContext';
+import ToastNotify from '../common/ToastNotify';
 
-type RootStackParamList = {
-  Home: undefined;
-};
+interface RouterProps {
+  navigation: NavigationProp<any, any>;
+}
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
-
-const Home = ({navigation}: Props) => {
+const Home = ({navigation}: RouterProps) => {
   const inbrain = useInbrain();
+  const [unAvailable, setUnAvailable] = useState<boolean>(false);
+  const [notifyMsg, setNotifyMsg] = useState<string>('');
+
   /**
    * How to call inbrain.showSurveys()
    */
-  const onClickShowSurveys = () => {
+  const getSurveyWall = () => {
     inbrain
       ?.showSurveys()
       .then(() => {
@@ -27,9 +28,34 @@ const Home = ({navigation}: Props) => {
       });
   };
 
+  /**
+   * How to call inbrain.checkSurveysAvailable()
+   */
+
+  const onClickShowSurveys = () => {
+    inbrain
+      ?.checkSurveysAvailable()
+      .then((available: boolean) => {
+        if (available) {
+          getSurveyWall();
+        } else {
+          setNotifyMsg('Ooops... No surveys available right now!');
+        }
+        setUnAvailable(!available);
+      })
+      .catch((err: Error) => {
+        console.log(
+          `[Check SurveysWall Available ERROR] => ${err.message || err}`,
+        );
+      });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      {unAvailable && (
+        <ToastNotify message={notifyMsg} callBack={() => setNotifyMsg('')} />
+      )}
+      <View style={styles.titleContainer}>
         <Text style={styles.title}>inBrain Surveys</Text>
         <Text style={styles.appSubtitle}>Example App</Text>
       </View>
@@ -60,6 +86,9 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#fff',
     flex: 1,
+  },
+  titleContainer: {
+    marginTop: 15,
   },
   title: {
     fontSize: 30,

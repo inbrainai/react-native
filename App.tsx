@@ -7,8 +7,6 @@ import inbrain, {StatusBarConfig, NavigationBarConfig} from 'inbrain-surveys';
 const App = () => {
   const [reward, setReward] = useState(0);
 
-  // value={{ authenticated, setAuthenticated }}
-
   useEffect(() => {
     // To test with your account, replace the credentials belowc3630a51ae79405662146581066b387f550ea6de
     const CLIENT_ID = '852dd4b7-1d05-4803-a1e3-037d0fcfe18f';
@@ -46,9 +44,6 @@ const App = () => {
 
     inbrain.setNavigationBarConfig(navigationBarConfig);
   }, []);
-
-  // type ThemeContextType = null;
-  // const [theme, setTheme] = useState<ThemeContextType>(null);
 
   return (
     <InbrainContext.Provider value={inbrain}>

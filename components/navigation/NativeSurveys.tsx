@@ -4,28 +4,33 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import {useInbrain} from '../context/inbrainContext';
-import {useReward} from '../context/RewardContext';
-
-import {InBrainSurveyCategory, InBrainReward} from 'inbrain-surveys';
-
 import Points from '../common/Points';
 import Rank from '../common/Rank';
 import Time from '../common/Time';
 import {mScale} from '../utils/metrics';
 
+import {useInbrain} from '../context/inbrainContext';
+import {useReward} from '../context/RewardContext';
+
+import {
+  InBrainSurveyCategory,
+  InBrainReward,
+  OnCloseSurveysData,
+} from 'inbrain-surveys';
+
 const NativeSurveysList = () => {
   const inbrain = useInbrain();
   const {reward, setReward} = useReward();
+
   const [nativeSurveysState, setNativeSurveysState] = useState<
     InBrainNativeSurvey[]
   >([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [unAvailable, setUnAvailable] = useState<boolean>(false);
 
   const filter = {
     placementId: undefined,
@@ -39,14 +44,16 @@ const NativeSurveysList = () => {
 
   useEffect(() => {
     getNativeSurveys();
-    checkSurveysAvailable();
     // Add lister
-    inbrain?.setOnSurveysCloseLister(() => {
+    inbrain?.setOnSurveysCloseLister((event: OnCloseSurveysData) => {
       console.log('[setOnSurveysCloseLister SUCCESS] => ');
+      console.log('[Close by WebView => ]', event.byWebView);
       getRewards();
       setIsLoading(true);
       getNativeSurveys();
     });
+
+    //@TODO remove listener ?
   }, []);
 
   /**
@@ -74,22 +81,6 @@ const NativeSurveysList = () => {
     inbrain?.confirmRewards(rewards).then(() => {
       console.log('[Confirm rewards SUCCESS]');
     });
-  };
-
-  /**
-   * How to call inbrain.checkSurveysAvailable()
-   */
-
-  const checkSurveysAvailable = () => {
-    inbrain
-      ?.checkSurveysAvailable()
-      .then((available: boolean) => {
-        available && getNativeSurveys();
-        setUnAvailable(!available);
-      })
-      .catch((err: Error) => {
-        console.log(`[Check Surveys Available ERROR] => ${err.message || err}`);
-      });
   };
 
   /**
@@ -122,15 +113,15 @@ const NativeSurveysList = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {isLoading && (
         <View style={[styles.activityContainer]}>
           <ActivityIndicator />
         </View>
       )}
-      {unAvailable && (
+      {nativeSurveysState.length === 0 && !isLoading && (
         <View style={[styles.activityContainer]}>
-          <Text>no surveys available at the moment</Text>
+          <Text>Ooops... No surveys available right now!</Text>
         </View>
       )}
       <ScrollView contentContainerStyle={styles.flex} style={styles.flex}>
@@ -144,7 +135,7 @@ const NativeSurveysList = () => {
           </View>
         ))}
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -154,7 +145,7 @@ export default NativeSurveysList;
  * Button in the action lise
  */
 const NativeSurvey = (props: NativeSurveyProps) => {
-  const survey = props.survey;
+  const {survey, onPress} = props;
   return (
     <View style={styles.surveyView}>
       <View style={[styles.card, styles.shadow]}>
@@ -180,7 +171,7 @@ const NativeSurvey = (props: NativeSurveyProps) => {
           <View style={styles.surveyActionBox}>
             <TouchableOpacity
               style={styles.takeSurveyBtn}
-              onPress={() => props.onPress(survey)}>
+              onPress={() => onPress(survey)}>
               <Text
                 adjustsFontSizeToFit
                 allowFontScaling
@@ -228,6 +219,7 @@ const styles = StyleSheet.create({
   },
   surveysGrid: {
     flexBasis: '50%',
+    flexGrow: 1,
     alignItems: 'center',
   },
   surveyBox: {
@@ -297,18 +289,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     alignSelf: 'center',
-  },
-  headerContainer: {
-    height: 110,
-    // flex: 1,
-    backgroundColor: 'green',
-    justifyContent: 'center',
-  },
-  title: {
-    marginTop: 30,
-    fontSize: 22,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: '#fff',
   },
 });
