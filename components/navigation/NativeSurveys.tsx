@@ -44,17 +44,25 @@ const NativeSurveysList = () => {
 
   useEffect(() => {
     getNativeSurveys();
-    // Add lister
-    inbrain?.setOnSurveysCloseLister((event: OnCloseSurveysData) => {
-      console.log('[setOnSurveysCloseLister SUCCESS] => ');
-      console.log('[Close by WebView => ]', event.byWebView);
-      getRewards();
-      setIsLoading(true);
-      getNativeSurveys();
-    });
-
-    //@TODO remove listener ?
   }, []);
+
+  useEffect(() => {
+    // Add lister
+    let subscription = inbrain?.setOnSurveysCloseLister(
+      (event: OnCloseSurveysData) => {
+        console.log('[setOnSurveysCloseLister SUCCESS] => ');
+        console.log('[Close by WebView => ]', event.byWebView);
+        getRewards();
+        setIsLoading(true);
+        getNativeSurveys();
+      },
+    );
+
+    // @TODO ADD remove listener, need rewrite SDK, (will remove this comment before merge to master)
+    // return () => {
+    //   subscription?.remove();
+    // };
+  }, [reward]);
 
   /**
    * How to call inbrain.getRewards()
