@@ -47,7 +47,9 @@ const NativeSurveysList = () => {
   }, []);
 
   useEffect(() => {
-    // Add lister
+    /**
+     * Add setOnSurveysCloseLister event listener
+     */
     let subscription = inbrain?.setOnSurveysCloseLister(
       (event: OnCloseSurveysData) => {
         console.log('[setOnSurveysCloseLister SUCCESS] => ');
@@ -58,10 +60,9 @@ const NativeSurveysList = () => {
       },
     );
 
-    // @TODO ADD remove listener, need rewrite SDK, (will remove this comment before merge to master)
-    // return () => {
-    //   subscription?.remove();
-    // };
+    return () => {
+      subscription?.remove();
+    };
   }, [reward]);
 
   /**

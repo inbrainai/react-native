@@ -1,4 +1,5 @@
 import {createContext, useContext} from 'react';
+import {EmitterSubscription} from 'react-native';
 import {
   InitOptions,
   InBrainReward,
@@ -23,7 +24,7 @@ type InbrainContextType = {
   setNavigationBarConfig: (config: NavigationBarConfig) => void;
   setOnSurveysCloseLister: (
     callback: (eventData: OnCloseSurveysData) => void,
-  ) => void;
+  ) => EmitterSubscription;
   checkSurveysAvailable: () => Promise<boolean>;
   showSurveys: () => Promise<void>;
   getNativeSurveys: (
@@ -38,8 +39,8 @@ type InbrainContextType = {
     opts?: InitOptions | undefined,
   ) => Promise<void>;
   setSessionParameters: (sessionUid: string, dataPoints: DataPoints) => void;
-  setOnCloseListener: (callback: () => void) => void;
-  setOnCloseListenerFromPage: (callback: () => void) => void;
+  setOnCloseListener: (callback: () => void) => EmitterSubscription;
+  setOnCloseListenerFromPage: (callback: () => void) => EmitterSubscription;
 };
 
 export const InbrainContext = createContext<InbrainContextType | null>(null);
