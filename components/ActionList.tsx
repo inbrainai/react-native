@@ -71,22 +71,23 @@ export default ActionList;
 /**
  * Button in the action lise
  */
-function ActionButton(props: ActionButtonProps) {
+
+const ActionButton = ({onPress, text}: ActionButtonProps) => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.actionButtons}>
         <ImageBackground
           source={require('../assets/OrangeButton.png')}
           resizeMode={'stretch'}
           style={styles.imageBackground}>
           <View style={styles.textButton}>
-            <Text style={styles.button}>{props.text}</Text>
+            <Text style={styles.button}>{text}</Text>
           </View>
         </ImageBackground>
       </View>
     </TouchableOpacity>
   );
-}
+};
 
 type ActionButtonProps = {
   onPress: () => void;

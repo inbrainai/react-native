@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import ActionList from '../ActionList';
 import {useInbrain} from '../context/inbrainContext';
 import ToastNotify from '../common/ToastNotify';
+import {useReward} from '../context/RewardContext';
+
+import {OnCloseSurveysData, InBrainReward} from 'inbrain-surveys';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
@@ -11,8 +14,53 @@ interface RouterProps {
 
 const Home = ({navigation}: RouterProps) => {
   const inbrain = useInbrain();
+  const {reward, setReward} = useReward();
   const [unAvailable, setUnAvailable] = useState<boolean>(false);
   const [notifyMsg, setNotifyMsg] = useState<string>('');
+
+  useEffect(() => {
+    /**
+     * Add setOnSurveysCloseLister event listener
+     */
+    let subscription = inbrain?.setOnSurveysCloseLister(
+      (event: OnCloseSurveysData) => {
+        console.log('[setOnSurveysCloseLister SUCCESS] => ');
+        console.log('[Close by WebView => ]', event.byWebView);
+        getRewards();
+      },
+    );
+
+    return () => {
+      subscription?.remove();
+    };
+  }, [reward]);
+
+  /**
+   * How to call inbrain.getRewards()
+   */
+  const getRewards = () => {
+    inbrain
+      ?.getRewards()
+      .then((result: InBrainReward[]) => {
+        const rewSum = result.reduce((sum, rew) => sum + rew.amount, 0);
+        const points = reward + rewSum;
+        setReward(points);
+        console.log(`[Get rewards SUCCESS] => Adding points ${points}`);
+        confirmRewards(result);
+      })
+      .catch((err: Error) => {
+        console.log(err);
+      });
+  };
+
+  /**
+   * How to call inbrain.confirmReward()
+   */
+  const confirmRewards = (rewards: InBrainReward[]) => {
+    inbrain?.confirmRewards(rewards).then(() => {
+      console.log('[Confirm rewards SUCCESS]');
+    });
+  };
 
   /**
    * How to call inbrain.showSurveys()

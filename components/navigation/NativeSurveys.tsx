@@ -5,9 +5,9 @@ import {
   Text,
   View,
   SafeAreaView,
-  ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  FlatList,
 } from 'react-native';
 import Points from '../common/Points';
 import Rank from '../common/Rank';
@@ -17,15 +17,11 @@ import {mScale} from '../utils/metrics';
 import {useInbrain} from '../context/inbrainContext';
 import {useReward} from '../context/RewardContext';
 
-import {
-  InBrainSurveyCategory,
-  InBrainReward,
-  OnCloseSurveysData,
-} from 'inbrain-surveys';
+import {InBrainSurveyCategory} from 'inbrain-surveys';
 
 const NativeSurveysList = () => {
   const inbrain = useInbrain();
-  const {reward, setReward} = useReward();
+  const {reward} = useReward();
 
   const [nativeSurveysState, setNativeSurveysState] = useState<
     InBrainNativeSurvey[]
@@ -50,47 +46,16 @@ const NativeSurveysList = () => {
     /**
      * Add setOnSurveysCloseLister event listener
      */
-    let subscription = inbrain?.setOnSurveysCloseLister(
-      (event: OnCloseSurveysData) => {
-        console.log('[setOnSurveysCloseLister SUCCESS] => ');
-        console.log('[Close by WebView => ]', event.byWebView);
-        getRewards();
-        setIsLoading(true);
-        getNativeSurveys();
-      },
-    );
+    let subscription = inbrain?.setOnSurveysCloseLister(() => {
+      console.log('[refresh surveys] => ');
+      setIsLoading(true);
+      getNativeSurveys();
+    });
 
     return () => {
       subscription?.remove();
     };
   }, [reward]);
-
-  /**
-   * How to call inbrain.getRewards()
-   */
-  const getRewards = () => {
-    inbrain
-      ?.getRewards()
-      .then((result: InBrainReward[]) => {
-        const rewSum = result.reduce((sum, rew) => sum + rew.amount, 0);
-        const points = reward + rewSum;
-        setReward(points);
-        console.log(`[Get rewards SUCCESS] => Adding points ${points}`);
-        confirmRewards(result);
-      })
-      .catch((err: Error) => {
-        console.log(err);
-      });
-  };
-
-  /**
-   * How to call inbrain.confirmReward()
-   */
-  const confirmRewards = (rewards: InBrainReward[]) => {
-    inbrain?.confirmRewards(rewards).then(() => {
-      console.log('[Confirm rewards SUCCESS]');
-    });
-  };
 
   /**
    * How to call inbrain.getNativeSurveys()
@@ -133,17 +98,17 @@ const NativeSurveysList = () => {
           <Text>Ooops... No surveys available right now!</Text>
         </View>
       )}
-      <ScrollView contentContainerStyle={styles.flex} style={styles.flex}>
-        {nativeSurveysState.map(survey => (
-          <View key={survey.id} style={styles.surveysGrid}>
-            <NativeSurvey
-              key={survey.id}
-              survey={survey}
-              onPress={onPressShowNativeSurvey}
-            />
-          </View>
-        ))}
-      </ScrollView>
+      <View style={styles.flex}>
+        <FlatList
+          refreshing={true}
+          data={nativeSurveysState}
+          renderItem={({item}) => (
+            <NativeSurvey survey={item} onPress={onPressShowNativeSurvey} />
+          )}
+          numColumns={2}
+          keyExtractor={item => item.id}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -153,8 +118,7 @@ export default NativeSurveysList;
 /**
  * Button in the action lise
  */
-const NativeSurvey = (props: NativeSurveyProps) => {
-  const {survey, onPress} = props;
+const NativeSurvey = ({survey, onPress}: NativeSurveyProps) => {
   return (
     <View style={styles.surveyView}>
       <View style={[styles.card, styles.shadow]}>
@@ -207,7 +171,7 @@ type NativeSurveyProps = {
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: '#eeeeee',
     flex: 1,
   },
   activityContainer: {
@@ -219,17 +183,17 @@ const styles = StyleSheet.create({
     zIndex: 99,
     elevation: 99,
   },
+  surveysGrid: {
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+  },
   surveyView: {
     height: 180,
-    flexDirection: 'column',
+    flex: 1,
     paddingTop: mScale(10),
-    paddingHorizontal: mScale(10),
-    width: '100%',
-  },
-  surveysGrid: {
-    flexBasis: '50%',
-    flexGrow: 1,
-    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: mScale(5),
   },
   surveyBox: {
     alignItems: 'center',
@@ -254,8 +218,6 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
     backgroundColor: '#eeeeee',
   },
   noSurveysContainer: {
