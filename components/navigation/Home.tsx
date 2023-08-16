@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import ActionList from '../ActionList';
-import {useInbrain} from '../context/inbrainContext';
-import ToastNotify from '../common/ToastNotify';
-import ActivityWithOverlay from '../common/ActivityWithOverlay';
+import {useInbrain} from '../context/InbrainContext';
+import {ActivityWithOverlay, ToastNotify} from '../common';
 import {useReward} from '../context/RewardContext';
 
 import {OnCloseSurveysData, InBrainReward} from 'inbrain-surveys';
