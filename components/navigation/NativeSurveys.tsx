@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   surveyView: {
-    height: 180,
+    height: 170,
     flex: 1,
     paddingTop: mScale(10),
     justifyContent: 'space-between',
@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
   flex: {
     flex: 1,
     backgroundColor: '#eeeeee',
+    padding: 4,
   },
   noSurveysContainer: {
     flex: 1,
