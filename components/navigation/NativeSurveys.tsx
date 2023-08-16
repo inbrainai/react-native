@@ -65,6 +65,7 @@ const NativeSurveysList = () => {
         setIsLoading(false);
       })
       .catch((err: Error) => {
+        setIsLoading(false);
         console.log(err);
       });
   };

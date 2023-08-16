@@ -15,7 +15,6 @@ interface RouterProps {
 const Home = ({navigation}: RouterProps) => {
   const inbrain = useInbrain();
   const {reward, setReward} = useReward();
-  const [unAvailable, setUnAvailable] = useState<boolean>(false);
   const [notifyMsg, setNotifyMsg] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -86,15 +85,18 @@ const Home = ({navigation}: RouterProps) => {
     inbrain
       ?.checkSurveysAvailable()
       .then((available: boolean) => {
+        setIsLoading(false);
+
         if (available) {
-          setIsLoading(false);
           getSurveyWall();
         } else {
           setNotifyMsg('Ooops... No surveys available right now!');
         }
-        setUnAvailable(!available);
       })
       .catch((err: Error) => {
+        setIsLoading(false);
+
+        setNotifyMsg('Ooops... No surveys available right now!');
         console.log(
           `[Check SurveysWall Available ERROR] => ${err.message || err}`,
         );
@@ -103,9 +105,7 @@ const Home = ({navigation}: RouterProps) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {unAvailable && (
-        <ToastNotify message={notifyMsg} callBack={() => setNotifyMsg('')} />
-      )}
+      <ToastNotify message={notifyMsg} callBack={() => setNotifyMsg('')} />
       <View style={styles.titleContainer}>
         <Text style={styles.title}>inBrain Surveys</Text>
         <Text style={styles.appSubtitle}>Example App</Text>
