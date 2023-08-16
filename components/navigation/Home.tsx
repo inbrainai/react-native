@@ -4,6 +4,7 @@ import {NavigationProp} from '@react-navigation/native';
 import ActionList from '../ActionList';
 import {useInbrain} from '../context/inbrainContext';
 import ToastNotify from '../common/ToastNotify';
+import ActivityWithOverlay from '../common/ActivityWithOverlay';
 import {useReward} from '../context/RewardContext';
 
 import {OnCloseSurveysData, InBrainReward} from 'inbrain-surveys';
@@ -17,6 +18,7 @@ const Home = ({navigation}: RouterProps) => {
   const {reward, setReward} = useReward();
   const [unAvailable, setUnAvailable] = useState<boolean>(false);
   const [notifyMsg, setNotifyMsg] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     /**
@@ -81,10 +83,12 @@ const Home = ({navigation}: RouterProps) => {
    */
 
   const onClickShowSurveys = () => {
+    setIsLoading(true);
     inbrain
       ?.checkSurveysAvailable()
       .then((available: boolean) => {
         if (available) {
+          setIsLoading(false);
           getSurveyWall();
         } else {
           setNotifyMsg('Ooops... No surveys available right now!');
@@ -123,6 +127,7 @@ const Home = ({navigation}: RouterProps) => {
           />
         </View>
       </View>
+      <ActivityWithOverlay show={isLoading} />
     </SafeAreaView>
   );
 };

@@ -6,12 +6,12 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
-  ActivityIndicator,
   FlatList,
 } from 'react-native';
 import Points from '../common/Points';
 import Rank from '../common/Rank';
 import Time from '../common/Time';
+import ActivityWithOverlay from '../common/ActivityWithOverlay';
 import {mScale} from '../utils/metrics';
 
 import {useInbrain} from '../context/inbrainContext';
@@ -88,13 +88,9 @@ const NativeSurveysList = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {isLoading && (
-        <View style={[styles.activityContainer]}>
-          <ActivityIndicator />
-        </View>
-      )}
+      <ActivityWithOverlay show={isLoading} />
       {nativeSurveysState.length === 0 && !isLoading && (
-        <View style={[styles.activityContainer]}>
+        <View style={styles.activityContainer}>
           <Text>Ooops... No surveys available right now!</Text>
         </View>
       )}
