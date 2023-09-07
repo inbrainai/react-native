@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Navigator from './components/navigation/Navigator';
-import {InbrainContext} from './components/context/InbrainContext';
+import {InbrainContext} from './components/context/inbrainContext';
 import {RewardContext} from './components/context/RewardContext';
 import inbrain, {StatusBarConfig, NavigationBarConfig} from 'inbrain-surveys';
 

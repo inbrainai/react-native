@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import ActionList from '../ActionList';
-import {useInbrain} from '../context/InbrainContext';
+import {useInbrain} from '../context/inbrainContext';
 import {ActivityWithOverlay, ToastNotify} from '../common';
 import {useReward} from '../context/RewardContext';
 
