@@ -11,7 +11,7 @@ import {
 import {Points, Rank, Time, ActivityWithOverlay} from '../common';
 import {mScale} from '../utils/metrics';
 
-import {useInbrain} from '../context/inbrainContext';
+import {useInbrain} from '../context/InbrainContext';
 import {useReward} from '../context/RewardContext';
 
 import {InBrainSurveyCategory} from 'inbrain-surveys';
