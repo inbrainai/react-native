@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,76 +6,95 @@ import {
   ImageBackground,
   TouchableOpacity,
   Image,
+  Dimensions,
+  Platform,
 } from 'react-native';
+import {useReward} from './context/RewardContext';
 
-export default class ActionList extends PureComponent<ActionListProps> {
-  render() {
-    return (
-      <View style={styles.flex}>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.imageFloatingLady}
-            source={require('../assets/FloatingWoman.png')}
-          />
-        </View>
-        <View style={styles.flex}>
-          <ActionButton
-            text="Open Survey Wall"
-            onPress={this.props.onClickShowSurveys}
-          />
-          <ActionButton
-            text="Show Native Surveys"
-            onPress={this.props.onClickShowNativeSurveys}
-          />
-        </View>
+type ActionListProps = {
+  onClickShowSurveys: () => void;
+  onClickShowNativeSurveys: () => void;
+};
+
+const ActionList = ({
+  onClickShowSurveys,
+  onClickShowNativeSurveys,
+}: ActionListProps) => {
+  const [isPortrait, setIsPortrait] = useState<boolean>();
+  const {reward} = useReward();
+
+  /**
+   * Returns true if the screen is in portrait mode
+   */
+  const isPortraitOrientation = () => {
+    const dim = Dimensions.get('screen');
+    return dim.height >= dim.width;
+  };
+
+  useEffect(() => {
+    setIsPortrait(isPortraitOrientation());
+    let orientationListener = Dimensions.addEventListener('change', () => {
+      setIsPortrait(isPortraitOrientation());
+    });
+
+    return () => {
+      orientationListener.remove();
+    };
+  }, []);
+
+  return (
+    <View
+      style={[
+        styles.actionContainer,
+        !isPortrait && !Platform.isPad ? styles.row : {},
+      ]}>
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.imageFloatingLady}
+          source={require('../assets/FloatingWoman.png')}
+        />
       </View>
-    );
-  }
-}
+      <View style={styles.flex}>
+        <ActionButton text="Open Survey Wall" onPress={onClickShowSurveys} />
+        <ActionButton
+          text="Show Native Surveys"
+          onPress={onClickShowNativeSurveys}
+        />
+        <Text style={styles.points}>Total Points: {reward}</Text>
+      </View>
+    </View>
+  );
+};
+
+export default ActionList;
 
 /**
  * Button in the action lise
  */
-function ActionButton(props: ActionButtonProps) {
+
+const ActionButton = ({onPress, text}: ActionButtonProps) => {
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.actionButtons}>
         <ImageBackground
           source={require('../assets/OrangeButton.png')}
           resizeMode={'stretch'}
           style={styles.imageBackground}>
           <View style={styles.textButton}>
-            <Text style={styles.button}>{props.text}</Text>
+            <Text style={styles.button}>{text}</Text>
           </View>
         </ImageBackground>
       </View>
     </TouchableOpacity>
   );
-}
+};
 
 type ActionButtonProps = {
   onPress: () => void;
   text: string;
 };
 
-/**
- * Component props
- */
-type ActionListProps = {
-  onClickShowSurveys: () => void;
-  onClickShowNativeSurveys: () => void;
-};
-
-/**
- * Styles in JS
- */
 const styles = StyleSheet.create({
-  buttonContainer: {
-    marginLeft: 35,
-    marginRight: 35,
-    marginTop: 50,
-    justifyContent: 'center',
-  },
   textButton: {
     flexDirection: 'row',
     height: '100%',
@@ -99,17 +118,35 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imageFloatingLady: {
-    height: 120,
+    height: 160,
     resizeMode: 'contain',
   },
   actionButtons: {
     flexDirection: 'column',
     height: 80,
-    marginBottom: 30,
+    marginBottom: 20,
     marginLeft: 30,
     marginRight: 30,
+    alignSelf: 'center',
+    maxWidth: 550,
   },
   flex: {
     flex: 1,
+    justifyContent: 'center',
+  },
+  actionContainer: {
+    flex: 1,
+    marginHorizontal: 10,
+    padding: 10,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  points: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 10,
+    color: '#47a3dc',
+    textAlign: 'center',
   },
 });
